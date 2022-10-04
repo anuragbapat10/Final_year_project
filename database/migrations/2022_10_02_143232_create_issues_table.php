@@ -40,6 +40,5 @@ return new class extends Migration
     }
 };
 
-// TODO: issue-tag migration
 // TODO: models of all migrations
 // TODO: seeders for all tables
