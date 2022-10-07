@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\NullableType;
 
 return new class extends Migration
 {
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->text('content');
             $table->integer('upvote');
             $table->integer('downvote');
-            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->timestamps();
 
             $table->foreign('parent_id')->references('id')->on('comments')->cascadeOnUpdate()->cascadeOnDelete();
