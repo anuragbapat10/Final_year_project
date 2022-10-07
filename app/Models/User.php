@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'user_id')->withTimestamps();
+    }
+
+    public function issues()
+    {
+        return $this->hasMany(Issue::class,'author_id')->withTimestamps();
+    }
 }
