@@ -37,4 +37,11 @@ class UserController extends Controller
 
         return UserResource::make($user);
     }
+
+    public function deleteUser($id) {
+        $deletedUser = User::find($id);
+        $deletedUser->delete();
+
+        return UserResource::make($deletedUser);
+    }
 }

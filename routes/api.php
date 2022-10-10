@@ -23,5 +23,12 @@ use App\Http\Controllers\LoginController;
 Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');
 
 Route::get('user/{id}', 'App\Http\Controllers\UserController@getUser')->name('user.get');
-
 Route::post('user', 'App\Http\Controllers\UserController@updateUser')->name('login.update');
+Route::delete('user/{id}', 'App\Http\Controllers\UserController@deleteUser')->name('user.delete');
+
+Route::get('issue/{id}', 'App\Http\Controllers\IssueController@getIssue')->name('issue.get');
+Route::post('issue/', 'App\Http\Controllers\IssueController@updateIssue')->name('issue.update');
+
+Route::get('tag/{id}', 'App\Http\Controllers\TagController@getTag')->name('tag.get');
+Route::post('tag/', 'App\Http\Controllers\TagController@updateTag')->name('tag.update');
+Route::delete('tag/{id}', 'App\Http\Controllers\TagController@deleteTag')->name('tag.delete');
