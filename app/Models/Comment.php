@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class Comment extends Model
 {
     use HasFactory;
+    use HasRecursiveRelationships;
 
     /**
      * The attributes that are mass assignable.
@@ -36,6 +38,6 @@ class Comment extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id')->withTimestamps();
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

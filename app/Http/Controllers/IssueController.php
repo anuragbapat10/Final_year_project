@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Issue;
-use Illuminate\Http\Request;
 use App\Http\Requests\IssueRequest;
-use App\Http\Requests\LoginRequest;
-use App\Http\Resources\UserResource;
 use App\Http\Resources\IssueResource;
 
 class IssueController extends Controller
@@ -15,7 +11,7 @@ class IssueController extends Controller
     /**
      * @param \App\Http\Requests\IssueRequest $request
      *
-     * @return \App\Http\Resourcees\IssueResource
+     * @return \App\Http\Resources\IssueResource
      */
     public function getIssue($id): IssueResource {
 
@@ -49,7 +45,7 @@ class IssueController extends Controller
             $issue->tags()->attach($request->tags);
         }
 
-        
+
 
         return IssueResource::make($issue);
     }

@@ -32,3 +32,8 @@ Route::post('issue/', 'App\Http\Controllers\IssueController@updateIssue')->name(
 Route::get('tag/{id}', 'App\Http\Controllers\TagController@getTag')->name('tag.get');
 Route::post('tag/', 'App\Http\Controllers\TagController@updateTag')->name('tag.update');
 Route::delete('tag/{id}', 'App\Http\Controllers\TagController@deleteTag')->name('tag.delete');
+
+Route::get('comment/{id}', 'App\Http\Controllers\CommentController@getComment')->name('comment.get');
+Route::post('comment/', 'App\Http\Controllers\CommentController@updateComment')->name('comment.update');
+Route::delete('comment/{id}', 'App\Http\Controllers\CommentController@deleteComment')->name('comment.delete');
+Route::get('childCommentsOf/{id}', 'App\Http\Controllers\CommentController@getChildComments')->name('childCommentsOf.get');

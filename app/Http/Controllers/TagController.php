@@ -11,7 +11,7 @@ class TagController extends Controller
     /**
      * @param \App\Http\Requests\TagRequest $request
      *
-     * @return \App\Http\Resourcees\TagResource
+     * @return \App\Http\Resources\TagResource
      */
     public function getTag($id): TagResource {
 
@@ -22,7 +22,8 @@ class TagController extends Controller
 
         if ($request->id !== null) {
 
-            Tag::find($request->id)->update(
+            $tag = Tag::find($request->id);
+            $tag->update(
                 ['name' => $request->name]
             );
         } else {
@@ -30,7 +31,6 @@ class TagController extends Controller
                 'name' => $request->name,
             ]);
         }
-        // $tag = Tag::where('id', $request->id)->first();
 
         return TagResource::make($tag);
     }
@@ -39,7 +39,7 @@ class TagController extends Controller
 
         $deletedTag = Tag::find($id);
         $deletedTag->delete();
-        
+
         return TagResource::make($deletedTag);
     }
 }
