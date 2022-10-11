@@ -19,8 +19,11 @@ class CommentController extends Controller
 
     public function getChildComments($id){
         $comments = Comment::tree()->get()->toTree();
-
-        return $comments;
+        foreach($comments as $comment){
+            if($comment->id == $id){
+                return $comment->children;
+            }
+        }
     }
 
     public function updateComment(CommentRequest $request) {
