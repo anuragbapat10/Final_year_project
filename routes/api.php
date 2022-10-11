@@ -28,6 +28,8 @@ Route::delete('user/{id}', 'App\Http\Controllers\UserController@deleteUser')->na
 
 Route::get('issue/{id}', 'App\Http\Controllers\IssueController@getIssue')->name('issue.get');
 Route::post('issue/', 'App\Http\Controllers\IssueController@updateIssue')->name('issue.update');
+Route::delete('issue/{id}', 'App\Http\Controllers\IssueController@deleteIssue')->name('issue.delete');
+Route::get('allIssues', 'App\Http\Controllers\IssueController@getAllIssues')->name('allIssues.get');
 
 Route::get('tag/{id}', 'App\Http\Controllers\TagController@getTag')->name('tag.get');
 Route::post('tag/', 'App\Http\Controllers\TagController@updateTag')->name('tag.update');

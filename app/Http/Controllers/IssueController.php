@@ -18,7 +18,12 @@ class IssueController extends Controller
         return IssueResource::make(Issue::find($id));
     }
 
-    public function updateIssue(IssueRequest $request): IssueResource {
+    public function getAllIssues(){
+
+        return IssueResource::collection(Issue::all());
+    }
+
+    public function updateIssue(IssueRequest $request){
         //TODO: HANDLE TAG IDS
 
         if ($request->id !== null) {
@@ -41,12 +46,19 @@ class IssueController extends Controller
                 'assignee_id' => $request->assignee_id,
                 'status_id' => $request->status_id],
             );
-            $issue = Issue::where('', $request->desc_comment_id)->first();
             $issue->tags()->attach($request->tags);
         }
 
 
 
         return IssueResource::make($issue);
+    }
+
+    public function deleteIssue($id): IssueResource {
+
+        $deletedIssue = Issue::find($id);
+        $deletedIssue->delete();
+
+        return IssueResource::make($deletedIssue);
     }
 }
