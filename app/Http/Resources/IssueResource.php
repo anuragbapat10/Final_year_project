@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Status;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class IssueResource extends JsonResource
@@ -17,11 +19,11 @@ class IssueResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'author_id' => $this->author_id,
-            'desc_comment_id' => $this->desc_comment_id,
-            'assignee_id' => $this->assignee_id,
-            'status_id' => $this->status_id,
-            'tags' => $this->tags,
+            'author' => UserResource::make($this->user),
+            'desc_comment' => CommentResource::make($this->comment),
+            'assignee' => UserResource::make(User::find($this->assignee_id)),
+            'status' => StatusResource::make(Status::find($this->status_id)),
+            'tags' => TagResource::collection($this->tags),
         ];
     }
 }

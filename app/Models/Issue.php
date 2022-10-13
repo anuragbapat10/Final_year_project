@@ -43,4 +43,9 @@ class Issue extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
+
+    public function comment()
+    {
+        return $this->belongsTo(Comment::class, 'desc_comment_id');
+    }
 }

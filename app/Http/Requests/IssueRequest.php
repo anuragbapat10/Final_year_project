@@ -18,13 +18,14 @@ class IssueRequest extends FormRequest
      */
     public function rules()
     {
-        return [    
+        return [
+            'id' => 'integer',
             'title' => 'required|string',
             'author_id' => 'required|integer',
             'desc_comment_id' => 'required|integer',
             'assignee_id' => 'required|integer',
             'status_id' => 'required|integer',
-            'tags' => 'required|integer',
+            'tags' => '',
         ];
     }
 }
