@@ -10,3 +10,14 @@ Issue tracking is the process of monitoring problems that users are experiencing
 
 ## Tech Stacks
 **Laravel 9.36.4**
+
+## 🌟 Contributors
+<table>
+	<tr>
+            <td>
+		<a href="https://github.com/Anurag-Shraddha-Nimish-Heramba/Final_year_project/graphs/contributors">
+  			<img src="https://contrib.rocks/image?repo=Anurag-Shraddha-Nimish-Heramba/Final_year_project" />
+		</a>
+	    </td>
+	</tr>
+</table>
