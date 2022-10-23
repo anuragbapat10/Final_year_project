@@ -11,7 +11,19 @@ Issue tracking is the process of monitoring problems that users are experiencing
 ## Tech Stacks
 **Laravel 9.36.4**
 
-## 🌟 Contributors
+## Contribution guidelines 
+Follow these algorithms to contribute to the AshTech repository 
+- Fork this repository 
+- Select your comfortable issues given in issues feature [click here to see the issues](https://github.com/Anurag-Shraddha-Nimish-Heramba/Final_year_project/issues).
+- Read the [Code of Conduct](https://github.com/Anurag-Shraddha-Nimish-Heramba/Final_year_project/blob/master/Code_of_Conduct.md) .
+- Try to solve the mentioned issues and make a pull request by using branch folder.
+- Stricly maintain the clear commit name and message.
+- Strictly maintain the decorum of this repository. ❤
+
+## Note  
+Feel free to file a new issue with a respective title and description.  If you already found a solution to your problem, we would love to review your pull request! 
+
+## Contributors
 <table>
 	<tr>
             <td>
