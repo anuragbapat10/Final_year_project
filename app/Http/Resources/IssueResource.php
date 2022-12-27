@@ -19,6 +19,7 @@ class IssueResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'organization' => OrganizationResource::make($this->organization_id),
             'author' => UserResource::make($this->user),
             'desc_comment' => CommentResource::make($this->comment),
             'assignee' => UserResource::make(User::find($this->assignee_id)),

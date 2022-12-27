@@ -36,6 +36,7 @@ class IssueSeeder extends Seeder
         DB::table('issues')->insert([
           'title' => fake()->sentence(),
           'author_id' => 1,
+          'organization_id' => 1,
           'desc_comment_id' => 1,
           'assignee_id' => rand(1,5),
           'status_id' => rand(1,3),
@@ -43,6 +44,7 @@ class IssueSeeder extends Seeder
         DB::table('issues')->insert([
           'title' => fake()->sentence(),
           'author_id' => 2,
+          'organization_id' => 1,
           'desc_comment_id' => 2,
           'assignee_id' => rand(1,5),
           'status_id' => rand(1,3),

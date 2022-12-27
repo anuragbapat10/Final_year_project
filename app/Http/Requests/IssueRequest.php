@@ -21,6 +21,7 @@ class IssueRequest extends FormRequest
         return [
             'id' => 'integer',
             'title' => 'required|string',
+            'organization_id' => 'required|integer',
             'author_id' => 'required|integer',
             'desc_comment_id' => 'required|integer',
             'assignee_id' => 'required|integer',

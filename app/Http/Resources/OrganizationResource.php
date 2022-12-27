@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Organization;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class OrganizationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,7 +18,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'organizations' => OrganizationResource::collection($this->organizations),
+            'description' => $this->description,
         ];
     }
 }

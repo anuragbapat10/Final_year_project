@@ -2,15 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Organization extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +18,7 @@ class User extends Authenticatable
         'name',
         'email',
         'hashed_password',
+        'description',
     ];
 
     /**
@@ -30,7 +28,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'hashed_password',
-        'remember_token',
     ];
 
     /**
@@ -42,18 +39,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function comments()
+    public function users()
     {
-        return $this->hasMany(Comment::class,'user_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'users_organizations')->withTimestamps();
     }
 
     public function issues()
     {
-        return $this->hasMany(Issue::class,'author_id')->withTimestamps();
+        return $this->hasMany(Issue::class,'organization_id')->withTimestamps();
     }
 
-    public function organizations()
-    {
-        return $this->belongsToMany(Organization::class, 'users_organizations')->withTimestamps();
-    }
 }
