@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Comment;
-use App\Models\Status;
 use App\Models\User;
+use App\Models\Status;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,6 +22,7 @@ class IssueFactory extends Factory
         return [
             //
             'title' => fake()->sentence(),
+            'organization_id' => 1,
             'author_id' => User::where('id', rand(1,5)),
             'desc_comment_id' => Comment::where('id', rand(1,5)),
             'assignee_id' => User::where('id', rand(1,5)),

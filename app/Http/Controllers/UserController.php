@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Organization;
 
 class UserController extends Controller
 {
@@ -16,12 +17,19 @@ class UserController extends Controller
 
     public function updateUser(UpdateUserRequest $request) {
         if ($request->id !== null) {
-
-            User::find($request->id)->update(
-                ['email' => $request->email,
-                'hashed_password' => hash('sha256', $request->password),
-                'name' => $request->name],
-            );
+            if ($request->password !== null) {
+                User::find($request->id)->update(
+                    ['email' => $request->email,
+                    'hashed_password' => hash('sha256', $request->password),
+                    'name' => $request->name],
+                );
+            }
+            else {
+                User::find($request->id)->update(
+                    ['email' => $request->email,
+                    'name' => $request->name],
+                );
+            }
 
         } else {
             User::create(
@@ -30,6 +38,8 @@ class UserController extends Controller
                 'name' => $request->name],
             );
         }
+        $user = User::where('id', $request->id)->first();
+        $user->organizations()->attach($request->organization_id);
 
         $user = User::where('email', $request->email)->first();
 

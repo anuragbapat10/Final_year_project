@@ -30,6 +30,7 @@ class IssueController extends Controller
 
             Issue::find($request->id)->update(
                 ['title' => $request->title,
+                'organization_id' => $request->organization_id,
                 'author_id' => $request->author_id,
                 'desc_comment_id' => $request->desc_comment_id,
                 'assignee_id' => $request->assignee_id,
@@ -41,6 +42,7 @@ class IssueController extends Controller
         } else {
             $issue = Issue::create(
                 ['title' => $request->title,
+                'organization_id' => $request->organization_id,
                 'author_id' => $request->author_id,
                 'desc_comment_id' => $request->desc_comment_id,
                 'assignee_id' => $request->assignee_id,

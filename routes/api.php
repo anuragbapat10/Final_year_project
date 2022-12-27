@@ -39,3 +39,9 @@ Route::get('comment/{id}', 'App\Http\Controllers\CommentController@getComment')-
 Route::post('comment/', 'App\Http\Controllers\CommentController@updateComment')->name('comment.update');
 Route::delete('comment/{id}', 'App\Http\Controllers\CommentController@deleteComment')->name('comment.delete');
 Route::get('childCommentsOf/{id}', 'App\Http\Controllers\CommentController@getChildComments')->name('childCommentsOf.get');
+
+Route::get('organization/{id}', 'App\Http\Controllers\OrganizationController@getOrganization')->name('organization.get');
+Route::post('organization/', 'App\Http\Controllers\OrganizationController@updateOrganization')->name('organization.update');
+Route::delete('organization/{id}', 'App\Http\Controllers\OrganizationController@deleteOrganization')->name('organization.delete');
+
+

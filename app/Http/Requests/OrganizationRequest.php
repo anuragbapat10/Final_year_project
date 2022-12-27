@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * Class UpdateUserRequest
  * @package App\Http\Requests
  */
-class UpdateUserRequest extends FormRequest
+class OrganizationRequest extends FormRequest
 {
 
     /**
@@ -20,10 +20,10 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'string',
+            'password' => 'required|string',
             'name' => 'required|string',
-            'id' => 'integer',
-            'organization_id' => 'integer',
+            'description' => 'text',
+            'id' => 'integer'
         ];
     }
 }

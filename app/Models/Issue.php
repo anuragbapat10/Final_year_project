@@ -48,4 +48,9 @@ class Issue extends Model
     {
         return $this->belongsTo(Comment::class, 'desc_comment_id');
     }
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class, 'organization_id');
+    }
 }
