@@ -23,7 +23,8 @@ class UpdateUserRequest extends FormRequest
             'password' => 'string',
             'name' => 'required|string',
             'id' => 'integer',
-            'organization_id' => 'integer',
+            'organization_id' => '',
+            'organization_add' => 'boolean',
         ];
     }
 }

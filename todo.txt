@@ -1,9 +1,7 @@
 <strong>ML MODEL</strong>
-delete_users_org
-organization employee api
-specific issues concerned to organisation
 image adding to comment
 
 
 -- low priority
+email verification
 profile pic

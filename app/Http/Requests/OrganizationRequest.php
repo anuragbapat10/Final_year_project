@@ -20,9 +20,9 @@ class OrganizationRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required|string',
+            'password' => 'string',
             'name' => 'required|string',
-            'description' => 'text',
+            'description' => 'string',
             'id' => 'integer'
         ];
     }

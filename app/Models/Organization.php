@@ -46,7 +46,7 @@ class Organization extends Model
 
     public function issues()
     {
-        return $this->hasMany(Issue::class,'organization_id')->withTimestamps();
+        return $this->hasMany(Issue::class,'organization_id');
     }
 
 }

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Organization;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\Organization;
+use SebastianBergmann\Type\FalseType;
 
 class UserController extends Controller
 {
@@ -38,10 +39,16 @@ class UserController extends Controller
                 'name' => $request->name],
             );
         }
-        $user = User::where('id', $request->id)->first();
-        $user->organizations()->attach($request->organization_id);
 
         $user = User::where('email', $request->email)->first();
+
+        if ($request->organization_add != NULL) {    
+            if ($request->organization_add == 1) {
+                $user->organizations()->attach($request->organization_id);
+            } elseif ($request->organization_add == 0) {
+                $user->organizations()->detach($request->organization_id);
+            }
+        }
 
         return UserResource::make($user);
     }
