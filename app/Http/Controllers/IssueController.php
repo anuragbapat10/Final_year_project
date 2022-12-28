@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Issue;
 use App\Http\Requests\IssueRequest;
 use App\Http\Resources\IssueResource;
+use App\Http\Resources\IssuesSummaryResource;
 
 class IssueController extends Controller
 {
@@ -20,7 +21,7 @@ class IssueController extends Controller
 
     public function getAllIssues(){
 
-        return IssueResource::collection(Issue::all());
+        return IssuesSummaryResource::collection(Issue::all());
     }
 
     public function updateIssue(IssueRequest $request){

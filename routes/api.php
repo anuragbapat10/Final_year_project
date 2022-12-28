@@ -44,4 +44,6 @@ Route::get('organization/{id}', 'App\Http\Controllers\OrganizationController@get
 Route::post('organization/', 'App\Http\Controllers\OrganizationController@updateOrganization')->name('organization.update');
 Route::delete('organization/{id}', 'App\Http\Controllers\OrganizationController@deleteOrganization')->name('organization.delete');
 
+Route::get('organizationEmployee/{id}', 'App\Http\Controllers\OrganizationController@getOrganizationEmployees')->name('organizationEmployees.get');
 
+Route::get('organizationIssues/{id}', 'App\Http\Controllers\OrganizationController@getOrganizationIssues')->name('organizationIssues.get');
