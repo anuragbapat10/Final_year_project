@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Helpers\Media\MediaHelper;
 
-class Comment extends Model
+class Comment extends Model implements HasMedia
 {
     use HasFactory;
     use HasRecursiveRelationships;
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -45,4 +50,35 @@ class Comment extends Model
     {
         return $this->hasOne(Issue::class,'desc_comment_id');
     }
+
+    /**
+     * @return string
+     */
+    public static function getCommentAttachmentCollectionName(): string
+    {
+        return 'comment_attachment';
+    }
+
+    /**
+     * @return \Spatie\MediaLibrary\MediaCollections\Models\Media|null
+     */
+    public function getCommentAttachmentImage(): ?Media
+    {
+        return $this->getFirstMedia(self::getCommentAttachmentCollectionName());
+    }
+
+    /**
+     * @return void
+     */
+    public function registerMediaCollections(): void
+    {
+        // Register Profile Picture media
+        $this->addMediaCollection(self::getCommentAttachmentCollectionName())
+            ->singleFile()
+            ->acceptsMimeTypes(['image/jpeg', 'image/png'])
+            ->registerMediaConversions(function (Media $media) {
+                MediaHelper::getThumbnailDefinition($this);
+            });
+    }
+
 }

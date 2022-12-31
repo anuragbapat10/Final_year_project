@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\Http\Resources\BaseResource;
+use App\Helpers\Http\Resources\MediaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CommentResource extends JsonResource
+class CommentResource extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -21,6 +23,7 @@ class CommentResource extends JsonResource
             'upvote' => $this->upvote,
             'downvote' => $this->downvote,
             'updated_at' => $this->updated_at,
+            'profile_picture' => !empty($this->getCommentAttachmentImage()) ? MediaResource::make($this->getCommentAttachmentImage()) : null,
         ];
     }
 }

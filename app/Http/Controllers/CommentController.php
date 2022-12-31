@@ -47,6 +47,12 @@ class CommentController extends Controller
             );
         }
 
+        if ($request->hasFile('comment_attachment')) {
+            $comment->addMediaFromRequest('comment_attachment')->toMediaCollection(Comment::getCommentAttachmentCollectionName());
+        } elseif (!empty($comment->getCommentAttachmentImage())) {
+            $comment->getCommentAttachmentImage()->delete();
+        }
+
         return CommentResource::make($comment);
     }
 

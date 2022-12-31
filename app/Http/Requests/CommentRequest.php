@@ -25,6 +25,7 @@ class CommentRequest extends FormRequest
             'upvote' => 'integer',
             'downvote' => 'integer',
             'parent_id' => 'integer',
+            'comment_attachment' => 'nullable|file|mimes:jpg,jpeg,png,svg',
         ];
     }
 }
