@@ -1,7 +1,18 @@
 <strong>ML MODEL</strong>
+organization employee api
+specific issues concerned to organisation
 image adding to comment
 
 
--- low priority
-email verification
-profile pic
+-- Frontend 
+Drop-down filter
+
+
+-- Low priority 
+Email verification 
+Profile pic 
+Log sorting as per comment
+Employee acceptance status
+Open Source
+View employees status
+Recent activities

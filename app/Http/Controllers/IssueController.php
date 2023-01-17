@@ -47,7 +47,7 @@ class IssueController extends Controller
                 'author_id' => $request->author_id,
                 'desc_comment_id' => $request->desc_comment_id,
                 'assignee_id' => $request->assignee_id,
-                'status_id' => $request->status_id],
+                'status_id' => 1],
             );
             $issue->tags()->attach($request->tags);
         }
