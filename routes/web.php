@@ -14,5 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('/charts', function () {
+    return view('charts');
+});
+
+Route::get('/issues', function () {
+    return view('issues');
+});
+
+Route::get('/employee', function () {
+    return view('employee');
+});
+
+Route::get('/editorgprofile', function () {
+    return view('editorgprofile');
+});
+
+Route::get('/profile', function () {
+    return view('profile');
 });
