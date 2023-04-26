@@ -95,7 +95,7 @@
                 </g>
               </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">User</span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -106,48 +106,38 @@
         <div class="menu-inner-shadow"></div>
 
         <ul class="menu-inner py-1">
-          <!-- Dashboard -->
-          <li class="menu-item">
-            <a href="/" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-home-circle"></i>
-              <div data-i18n="Analytics">Dashboard</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/charts" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-chart"></i>
-              <div data-i18n="Analytics">Charts</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/issues" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-error"></i>
-              <div data-i18n="Analytics">Issues</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/employee" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-user me-2"></i>
-              <div data-i18n="Analytics">Employees</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/editorgprofile" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
-              <div data-i18n="Analytics">Edit Profile</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="#" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-              <div data-i18n="Analytics">Log Out</div>
-            </a>
-          </li>
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="/user/dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+            
+            <li class="menu-item">
+              <a href="/user/issues" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-error"></i>
+                <div data-i18n="Analytics">Issues</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/user/organization" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user me-2"></i>
+                <div data-i18n="Analytics">Organization</div>
+              </a>
+            </li>
+            
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
+                <div data-i18n="Analytics">Log Out</div>
+              </a>
+            </li>
 
-          <!-- Layouts -->
+            <!-- Layouts -->
 
 
-        </ul>
+          </ul>
       </aside>
       <!-- / Menu -->
 
@@ -155,36 +145,12 @@
       <div class="layout-page">
         <!-- Navbar -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
+        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" style="margin:15px;">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
 
 
 
@@ -211,63 +177,125 @@
 
             <div class="col-xl-12">
               <h6 class="text-muted">Basic</h6>
+              <div class="col-md">
+               <div class="card mb-4">
+                    <h5 class="card-header">Profile Details</h5>
+                    <!-- Account -->
+                    <div class="card-body">
+                      <div class="d-flex align-items-start align-items-sm-center gap-4">
+                        <img
+                          src="../assets/img/avatars/1.png"
+                          alt="user-avatar"
+                          class="d-block rounded"
+                          height="100"
+                          width="100"
+                          id="uploadedAvatar"
+                        />
+                        <div class="button-wrapper">
+                          
+                          <span class="d-none d-sm-block">Name: XYZ</span>
+                          <span class="d-none d-sm-block">Email: email@gmail.com</span>
+
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                </div>
               <div class="nav-align-top mb-4">
                 <ul class="nav nav-pills mb-3" role="tablist">
                   <li class="nav-item">
                     <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
                       data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">
-                      Home
+                      Issues
                     </button>
                   </li>
                   <li class="nav-item">
                     <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                       data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile"
                       aria-selected="false">
-                      Profile
+                      organization
                     </button>
                   </li>
-                  <li class="nav-item">
-                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                      data-bs-target="#navs-pills-top-messages" aria-controls="navs-pills-top-messages"
-                      aria-selected="false">
-                      Messages
-                    </button>
-                  </li>
+                  
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
-                    <p>
-                      Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps
-                      powder. Bear claw candy topping.
-                    </p>
-                    <p class="mb-0">
-                      Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon
-                      jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow
-                      jujubes sweet.
-                    </p>
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h5 class="card-title">Issue 1</h5>
+                      <div class="card-subtitle text-muted mb-3">Issue</div>
+                      <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      </p>
+                      <a href="javascript:void(0)" class="card-link">Issue link</a>
+                    </div>
+                  </div>
+                  <div class="card mb-4">
+                    <div class="card-body">
+                    <h5 class="card-title">Issue 2</h5>
+                      <div class="card-subtitle text-muted mb-3">Issue</div>
+                     <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      </p>
+                      <a href="javascript:void(0)" class="card-link">Issue link</a>
+                    </div>
+                  </div>
+                  <div class="card mb-4">
+                    <div class="card-body">
+                    <h5 class="card-title">Issue 3</h5>
+                      <div class="card-subtitle text-muted mb-3">Issue</div>
+                     <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      </p>
+                      <a href="javascript:void(0)" class="card-link">Issue link</a>
+                    </div>
+                  </div>
                   </div>
                   <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
-                    <p>
-                      Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
-                      cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream
-                      cheesecake fruitcake.
-                    </p>
-                    <p class="mb-0">
-                      Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
-                      cotton candy liquorice caramels.
-                    </p>
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h5 class="card-title">Organization 1</h5>
+                      <div class="card-subtitle text-muted mb-3">Organization</div>
+                      <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      </p>
+                      <a href="javascript:void(0)" class="card-link">View profile</a>
+                    </div>
                   </div>
-                  <div class="tab-pane fade" id="navs-pills-top-messages" role="tabpanel">
-                    <p>
-                      Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans macaroon gummies
-                      cupcake gummi bears cake chocolate.
-                    </p>
-                    <p class="mb-0">
-                      Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet
-                      roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly
-                      jelly-o tart brownie jelly.
-                    </p>
+                  <div class="card mb-4">
+                    <div class="card-body">
+                    <h5 class="card-title">Organization 2</h5>
+                      <div class="card-subtitle text-muted mb-3">Organization</div>
+                     <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      </p>
+                      <a href="javascript:void(0)" class="card-link">View profile</a>
+                    </div>
                   </div>
+                  <div class="card mb-4">
+                    <h5 class="card-header">Profile Details</h5>
+                    <!-- Account -->
+                    <div class="card-body">
+                      <div class="d-flex align-items-start align-items-sm-center gap-4">
+                        <img
+                          src="../assets/img/avatars/1.png"
+                          alt="user-avatar"
+                          class="d-block rounded"
+                          height="100"
+                          width="100"
+                          id="uploadedAvatar"
+                        />
+                        <div class="button-wrapper">
+                          
+                          <span class="d-none d-sm-block">Name: XYZ</span>
+                          <span class="d-none d-sm-block">Email: email@gmail.com</span>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  
                 </div>
               </div>
 

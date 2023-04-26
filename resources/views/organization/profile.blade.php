@@ -85,7 +85,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Admin</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -96,54 +96,60 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-                    <!-- Dashboard -->
-                    <li class="menu-item">
-                        <a href="/" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                            <div data-i18n="Analytics">Dashboard</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/charts" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-chart"></i>
-                            <div data-i18n="Analytics">Charts</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/issues" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-error"></i>
-                            <div data-i18n="Analytics">Issues</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/employee" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user me-2"></i>
-                            <div data-i18n="Analytics">Employees</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="/editorgprofile" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
-                            <div data-i18n="Analytics">Edit Profile</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="#" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-                            <div data-i18n="Analytics">Log Out</div>
-                        </a>
-                    </li>
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="/organization/dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/organization/charts" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-chart"></i>
+                <div data-i18n="Analytics">Charts</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/organization/issues" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-error"></i>
+                <div data-i18n="Analytics">Issues</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/organization/employee" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user me-2"></i>
+                <div data-i18n="Analytics">Employees</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/organization/editorgprofile" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
+                <div data-i18n="Analytics">Edit Profile</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
+                <div data-i18n="Analytics">Log Out</div>
+              </a>
+            </li>
 
-                    <!-- Layouts -->
+            <!-- Layouts -->
 
 
-                </ul>
+          </ul>
             </aside>
             <!-- / Menu -->
 
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
+
+                <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" style="margin:15px;">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
 
                 <!-- / Navbar -->
 

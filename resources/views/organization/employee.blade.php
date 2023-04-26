@@ -99,7 +99,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Admin</span>
                     </a>
 
                     <a href="javascript:void(0);"
@@ -111,54 +111,61 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-                  <!-- Dashboard -->
-                  <li class="menu-item">
-                    <a href="/" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                      <div data-i18n="Analytics">Dashboard</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/charts" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-chart"></i>
-                      <div data-i18n="Analytics">Charts</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/issues" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-error"></i>
-                      <div data-i18n="Analytics">Issues</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/employee" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-user me-2"></i>
-                      <div data-i18n="Analytics">Employees</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/editorgprofile" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
-                      <div data-i18n="Analytics">Edit Profile</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-                      <div data-i18n="Analytics">Log Out</div>
-                    </a>
-                  </li>
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="/organization/dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/organization/charts" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-chart"></i>
+                <div data-i18n="Analytics">Charts</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/organization/issues" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-error"></i>
+                <div data-i18n="Analytics">Issues</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/organization/employee" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user me-2"></i>
+                <div data-i18n="Analytics">Employees</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/organization/editorgprofile" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
+                <div data-i18n="Analytics">Edit Profile</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
+                <div data-i18n="Analytics">Log Out</div>
+              </a>
+            </li>
 
-                  <!-- Layouts -->
+            <!-- Layouts -->
 
 
-                </ul>
+          </ul>
               </aside>
               <!-- / Menu -->
         
               <!-- Layout container -->
               <div class="layout-page">
                 <!-- Navbar -->
+                
+        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" style="margin:15px;">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
+
                 <!-- / Navbar -->
 
                 <!-- Content wrapper -->
@@ -189,7 +196,7 @@
                             <div class="card-body">
                                 <div class="row gx-3 gy-2 align-items-center">
                                     <div class="col-md-3">
-                                        <label class="form-label" for="selectTypeOpt">Filter 1</label>
+                                        <label class="form-label" for="selectTypeOpt">Name</label>
                                         <select id="selectTypeOpt" class="form-select color-dropdown">
                                             <option value="bg-primary" selected="">P1</option>
                                             <option value="bg-secondary">P2</option>
@@ -200,18 +207,7 @@
                                             <option value="bg-dark">P7</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label class="form-label" for="selectPlacement">Filter2</label>
-                                        <select class="form-select placement-dropdown" id="selectPlacement">
-                                            <option value="bg-primary" selected="">P1</option>
-                                            <option value="bg-secondary">P2</option>
-                                            <option value="bg-success">P3</option>
-                                            <option value="bg-danger">P4</option>
-                                            <option value="bg-warning">P5</option>
-                                            <option value="bg-info">P6</option>
-                                            <option value="bg-dark">P7</option>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="col-md-3">
                                         <label class="form-label" for="showToastPlacement">&nbsp;</label>
                                         <button id="showToastPlacement" class="btn btn-primary d-block">Search</button>
@@ -229,7 +225,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
+                                      <h5 class="modal-title" id="modalCenterTitle">Add Employee</h5>
                                       <button
                                         type="button"
                                         class="btn-close"
@@ -250,31 +246,14 @@
                                         </div>
                                       </div>
                                       <div class="row g-2">
-                                        <div class="col mb-0">
-                                          <label for="emailWithTitle" class="form-label">Email</label>
-                                          <input
-                                            type="text"
-                                            id="emailWithTitle"
-                                            class="form-control"
-                                            placeholder="xxxx@xxx.xx"
-                                          />
-                                        </div>
-                                        <div class="col mb-0">
-                                          <label for="dobWithTitle" class="form-label">DOB</label>
-                                          <input
-                                            type="text"
-                                            id="dobWithTitle"
-                                            class="form-control"
-                                            placeholder="DD / MM / YY"
-                                          />
-                                        </div>
+                                       
                                       </div>
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                         Close
                                       </button>
-                                      <button type="button" class="btn btn-primary">Save changes</button>
+                                      <button type="button" class="btn btn-primary">Add Employee </button>
                                     </div>
                                   </div>
                                 </div>
@@ -285,9 +264,8 @@
                             <table class="table">
                               <thead>
                                 <tr>
-                                  <th>Info1</th>
-                                  <th>Info2</th>
-                                  <th>Info3</th>
+                                  <th>Name</th>
+                                  <th>Email</th>
                                   <th>Action</th>
                                 </tr>
                               </thead>
@@ -296,7 +274,6 @@
                                   <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>T1</strong></td>
                                   <td>Albert Cook</td>
                                   
-                                  <td><span class="badge bg-label-primary me-1">Active</span></td>
                                   <td>
                                     <div class="dropdown">
                                       <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -317,7 +294,6 @@
                                   <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>T2</strong></td>
                                   <td>Barry Hunter</td>
                                   
-                                  <td><span class="badge bg-label-success me-1">Completed</span></td>
                                   <td>
                                     <div class="dropdown">
                                       <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -338,7 +314,6 @@
                                   <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>T3</strong></td>
                                   <td>Trevor Baker</td>
                                   
-                                  <td><span class="badge bg-label-info me-1">Scheduled</span></td>
                                   <td>
                                     <div class="dropdown">
                                       <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -361,7 +336,6 @@
                                   </td>
                                   <td>Jerry Milton</td>
                                   
-                                  <td><span class="badge bg-label-warning me-1">Pending</span></td>
                                   <td>
                                     <div class="dropdown">
                                       <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

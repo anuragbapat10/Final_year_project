@@ -85,7 +85,7 @@
                 </g>
               </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">User</span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -96,54 +96,49 @@
         <div class="menu-inner-shadow"></div>
 
         <ul class="menu-inner py-1">
-          <!-- Dashboard -->
-          <li class="menu-item">
-            <a href="/" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-home-circle"></i>
-              <div data-i18n="Analytics">Dashboard</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/charts" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-chart"></i>
-              <div data-i18n="Analytics">Charts</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/issues" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-error"></i>
-              <div data-i18n="Analytics">Issues</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/employee" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-user me-2"></i>
-              <div data-i18n="Analytics">Employees</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="/editorgprofile" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
-              <div data-i18n="Analytics">Edit Profile</div>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a href="#" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-              <div data-i18n="Analytics">Log Out</div>
-            </a>
-          </li>
-
-          <!-- Layouts -->
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="/user/dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+            
+            <li class="menu-item">
+              <a href="/user/issues" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-error"></i>
+                <div data-i18n="Analytics">Issues</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/user/organization" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user me-2"></i>
+                <div data-i18n="Analytics">Organization</div>
+              </a>
+            </li>
+            
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
+                <div data-i18n="Analytics">Log Out</div>
+              </a>
+            </li>
+            <!-- Layouts -->
 
 
-        </ul>
+          </ul>
       </aside>
       <!-- / Menu -->
 
       <!-- Layout container -->
       <div class="layout-page">
         <!-- Navbar -->
+
+        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" style="margin:15px;">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
 
         <!-- / Navbar -->
 
@@ -160,7 +155,7 @@
 
                 <h5 class="card-header">Table &nbsp;&nbsp;&nbsp;&nbsp;
                   <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalCenter"><span class="tf-icons bx bx-user-plus"></span>&nbsp;
-                    Add Employee
+                    Add Issues
                   </button>
                 </h5>
 
@@ -173,8 +168,20 @@
                   <div class="card-body">
                     <div class="row gx-3 gy-2 align-items-center">
                       <div class="col-md-3">
-                        <label class="form-label" for="selectTypeOpt">Filter 1</label>
+                        <label class="form-label" for="selectTypeOpt">Organization</label>
                         <select id="selectTypeOpt" class="form-select color-dropdown">
+                          <option value="bg-primary" selected="">O1</option>
+                          <option value="bg-secondary">O2</option>
+                          <option value="bg-success">O3</option>
+                          <option value="bg-danger">O4</option>
+                          <option value="bg-warning">O5</option>
+                          <option value="bg-info">O6</option>
+                          <option value="bg-dark">O7</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label class="form-label" for="selectPlacement">Issue tag</label>
+                        <select class="form-select placement-dropdown" id="selectPlacement">
                           <option value="bg-primary" selected="">P1</option>
                           <option value="bg-secondary">P2</option>
                           <option value="bg-success">P3</option>
@@ -184,8 +191,9 @@
                           <option value="bg-dark">P7</option>
                         </select>
                       </div>
+                      
                       <div class="col-md-3">
-                        <label class="form-label" for="selectPlacement">Filter2</label>
+                        <label class="form-label" for="selectPlacement">Issue Name</label>
                         <select class="form-select placement-dropdown" id="selectPlacement">
                           <option value="bg-primary" selected="">P1</option>
                           <option value="bg-secondary">P2</option>
@@ -213,7 +221,7 @@
                       <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
+                            <h5 class="modal-title" id="modalCenterTitle">Add Issue</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
@@ -225,12 +233,20 @@
                             </div>
                             <div class="row g-2">
                               <div class="col mb-0">
-                                <label for="emailWithTitle" class="form-label">Email</label>
-                                <input type="text" id="emailWithTitle" class="form-control" placeholder="xxxx@xxx.xx" />
+                                <label for="emailWithTitle" class="form-label">Organization</label>
+                                <input type="text" id="emailWithTitle" class="form-control" placeholder="organization" />
                               </div>
+                              <div class="mb-3">
+                          <label class="form-label" for="basic-default-message">Description</label>
+                          <textarea
+                            id="basic-default-message"
+                            class="form-control"
+                            placeholder="Add some info about your isssue"
+                          ></textarea>
+                        </div>
                               <div class="col mb-0">
-                                <label for="dobWithTitle" class="form-label">DOB</label>
-                                <input type="text" id="dobWithTitle" class="form-control" placeholder="DD / MM / YY" />
+                                <label for="dobWithTitle" class="form-label"> Tags</label>
+                                <input type="text" id="dobWithTitle" class="form-control" placeholder="add tags" />
                               </div>
                             </div>
                           </div>
@@ -238,7 +254,7 @@
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                               Close
                             </button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-primary">Add Issues</button>
                           </div>
                         </div>
                       </div>
@@ -249,18 +265,21 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Info1</th>
-                        <th>Info2</th>
-                        <th>Info3</th>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Tags</th>
+                        <th>Organization</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                      <tr data-href="google.com">
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>T1</strong></td>
-                        <td>Albert Cook</td>
+                      <tr>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>ID1</strong></td>
+                        <td>Issue 1</td>
 
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
+                        <td>Organization</td>
+
                         <td>
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -274,54 +293,56 @@
                         </td>
                       </tr>
                       <tr>
-                        <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>T2</strong></td>
-                        <td>Barry Hunter</td>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>ID2</strong></td>
+                        <td>Issue 1</td>
 
                         <td><span class="badge bg-label-success me-1">Completed</span></td>
+                        <td>Organization</td>
+
                         <td>
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show  me-2"></i> View</a>
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-2"></i> Delete</a>
+                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show me-1"></i> View</a>
+                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
                             </div>
                           </div>
                         </td>
-                      </tr>
-                      <tr>
-                        <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>T3</strong></td>
-                        <td>Trevor Baker</td>
+                      </tr><tr>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>ID3</strong></td>
+                        <td>Issue 1</td>
 
                         <td><span class="badge bg-label-info me-1">Scheduled</span></td>
+                        <td>Organization</td>
+
                         <td>
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show me-2"></i>View</a>
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-2"></i> Delete</a>
+                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show me-1"></i> View</a>
+                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
                             </div>
                           </div>
                         </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong>T4</strong>
-                        </td>
-                        <td>Jerry Milton</td>
+                      </tr><tr>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>ID4</strong></td>
+                        <td>Issue 1</td>
 
                         <td><span class="badge bg-label-warning me-1">Pending</span></td>
+                        <td>Organization</td>
+
                         <td>
                           <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show  me-2"></i>View</a>
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-2"></i> Delete</a>
+                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show me-1"></i> View</a>
+                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
                             </div>
                           </div>
                         </td>
