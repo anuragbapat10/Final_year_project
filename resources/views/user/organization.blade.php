@@ -9,7 +9,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Profile</title>
+    <title>organization</title>
 
     <meta name="description" content="" />
 
@@ -99,7 +99,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2">User</span>
                     </a>
 
                     <a href="javascript:void(0);"
@@ -111,146 +111,173 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-                  <!-- Dashboard -->
-                  <li class="menu-item">
-                    <a href="/" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                      <div data-i18n="Analytics">Dashboard</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/charts" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-chart"></i>
-                      <div data-i18n="Analytics">Charts</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/issues" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-error"></i>
-                      <div data-i18n="Analytics">Issues</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/employee" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-user me-2"></i>
-                      <div data-i18n="Analytics">Employees</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="/editorgprofile" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
-                      <div data-i18n="Analytics">Edit Profile</div>
-                    </a>
-                  </li>
-                  <li class="menu-item">
-                    <a href="#" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-                      <div data-i18n="Analytics">Log Out</div>
-                    </a>
-                  </li>
+            <!-- Dashboard -->
+            <li class="menu-item">
+              <a href="/user/dashboard" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Dashboard</div>
+              </a>
+            </li>
+            
+            <li class="menu-item">
+              <a href="/user/issues" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-error"></i>
+                <div data-i18n="Analytics">Issues</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="/user/organization" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user me-2"></i>
+                <div data-i18n="Analytics">Organization</div>
+              </a>
+            </li>
+            
+            <li class="menu-item">
+              <a href="#" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
+                <div data-i18n="Analytics">Log Out</div>
+              </a>
+            </li>
 
-                  <!-- Layouts -->
+            <!-- Layouts -->
 
 
-                </ul>
+          </ul>
               </aside>
               <!-- / Menu -->
         
               <!-- Layout container -->
               <div class="layout-page">
                 <!-- Navbar -->
+                
+        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" style="margin:15px;">
+              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                <i class="bx bx-menu bx-sm"></i>
+              </a>
+            </div>
 
                 <!-- / Navbar -->
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                  
+                    <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <div class="row">
-                                <h4 class="fw-bold py-3 mb-4">Edit Profile</h4>
-                  
-                            <div class="card mb-4">
+          
+                        <!-- Basic Bootstrap Table -->
+                        <div class="card">
+                          
+                          <h5 class="card-header">Table &nbsp;&nbsp;&nbsp;&nbsp; 
+                            
+                          </h5>
 
+
+
+
+
+                          <div class="card mb-4">
+                            
                             <div class="card-body">
-                                <form>
-                                  <div class="mb-3">
-                                    <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-fullname2" class="input-group-text"
-                                        ><i class="bx bx-user"></i
-                                      ></span>
-                                      <input
-                                        type="text"
-                                        class="form-control"
-                                        id="basic-icon-default-fullname"
-                                        placeholder="John Doe"
-                                        aria-label="John Doe"
-                                        aria-describedby="basic-icon-default-fullname2"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label class="form-label" for="basic-icon-default-company">Company</label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-company2" class="input-group-text"
-                                        ><i class="bx bx-buildings"></i
-                                      ></span>
-                                      <input
-                                        type="text"
-                                        id="basic-icon-default-company"
-                                        class="form-control"
-                                        placeholder="ACME Inc."
-                                        aria-label="ACME Inc."
-                                        aria-describedby="basic-icon-default-company2"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label class="form-label" for="basic-icon-default-email">Email</label>
-                                    <div class="input-group input-group-merge">
-                                      <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                      <input
-                                        type="text"
-                                        id="basic-icon-default-email"
-                                        class="form-control"
-                                        placeholder="john.doe"
-                                        aria-label="john.doe"
-                                        aria-describedby="basic-icon-default-email2"
-                                      />
-                                      <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
-                                    </div>
-                                    <div class="form-text">You can use letters, numbers & periods</div>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label class="form-label" for="basic-icon-default-phone">Phone No</label>
-                                    <div class="input-group input-group-merge">
-                                      <span id="basic-icon-default-phone2" class="input-group-text"
-                                        ><i class="bx bx-phone"></i
-                                      ></span>
-                                      <input
-                                        type="text"
-                                        id="basic-icon-default-phone"
-                                        class="form-control phone-mask"
-                                        placeholder="658 799 8941"
-                                        aria-label="658 799 8941"
-                                        aria-describedby="basic-icon-default-phone2"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label class="form-label" for="basic-icon-default-message">Message</label>
-                                    <div class="input-group input-group-merge speech-to-text">
-                                        <textarea class="form-control" placeholder="Say it" rows="2"></textarea>
-                                        <span class="input-group-text">
-                                          <i class="bx bx-microphone cursor-pointer text-to-speech-toggle"></i>
-                                        </span>
-                                      </div>
-                                  </div>
-                                  <button type="submit" class="btn btn-primary">Save Changes</button>
-                                </form>
-                              </div>
-                              </div>
+                            <div class="row gx-3 gy-2 align-items-center">
+                      <div class="col-md-3">
+                        <label class="form-label" for="selectTypeOpt">Organization</label>
+                        <select id="selectTypeOpt" class="form-select color-dropdown">
+                          <option value="bg-primary" selected="">O1</option>
+                          <option value="bg-secondary">O2</option>
+                          <option value="bg-success">O3</option>
+                          <option value="bg-danger">O4</option>
+                          <option value="bg-warning">O5</option>
+                          <option value="bg-info">O6</option>
+                          <option value="bg-dark">O7</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label class="form-label" for="selectPlacement">Issue tag</label>
+                        <select class="form-select placement-dropdown" id="selectPlacement">
+                          <option value="bg-primary" selected="">P1</option>
+                          <option value="bg-secondary">P2</option>
+                          <option value="bg-success">P3</option>
+                          <option value="bg-danger">P4</option>
+                          <option value="bg-warning">P5</option>
+                          <option value="bg-info">P6</option>
+                          <option value="bg-dark">P7</option>
+                        </select>
+                      </div>
+                      
+                      <div class="col-md-3">
+                        <label class="form-label" for="selectPlacement">Issue Name</label>
+                        <select class="form-select placement-dropdown" id="selectPlacement">
+                          <option value="bg-primary" selected="">P1</option>
+                          <option value="bg-secondary">P2</option>
+                          <option value="bg-success">P3</option>
+                          <option value="bg-danger">P4</option>
+                          <option value="bg-warning">P5</option>
+                          <option value="bg-info">P6</option>
+                          <option value="bg-dark">P7</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label class="form-label" for="showToastPlacement">&nbsp;</label>
+                        <button id="showToastPlacement" class="btn btn-primary d-block">Search</button>
+                      </div>
+                    </div>
+                  </div>
+                        </div>
+                           <div class="col-lg-4 col-md-6">
+                            <div class="mt-3">
+                             
+                              
       
+                              
+                            </div>
+                          </div>
+                          <div class="card mb-4">
+                    <div class="card-body">
+                    <h5 class="card-title">Organization 1</h5>
+                      <div class="card-subtitle text-muted mb-3">Organization</div>
+                     <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      </p>
+                      <a href="javascript:void(0)" class="card-link">View profile</a>
+                    </div>
+                  </div>
+                  <div class="card mb-4">
+                    <div class="card-body">
+                    <h5 class="card-title">Organization 2</h5>
+                      <div class="card-subtitle text-muted mb-3">Organization</div>
+                     <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      </p>
+                      <a href="javascript:void(0)" class="card-link">View profile</a>
+                    </div>
+                  </div><div class="card mb-4">
+                    <div class="card-body">
+                    <h5 class="card-title">Organization 3</h5>
+                      <div class="card-subtitle text-muted mb-3">Organization</div>
+                     <p class="card-text">
+                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      </p>
+                      <a href="javascript:void(0)" class="card-link">View profile</a>
+                    </div>
+                  </div>
+                        </div>
+
+                    
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
