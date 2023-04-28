@@ -20,6 +20,9 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('login');
 });
+Route::get('/createorganization', function () {
+    return view('createorganization');
+});
 
 Route::get('/organization/dashboard', function () {
     return view('organization/dashboard');
