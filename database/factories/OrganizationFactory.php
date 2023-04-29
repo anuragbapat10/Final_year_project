@@ -20,7 +20,7 @@ class OrganizationFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'hashed_password' => hash('sha256', 'password'), // password
+            'password' => password_hash("test", PASSWORD_BCRYPT), // password
             'description' => fake()->text(),
         ];
     }

@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
   <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
   <link rel="stylesheet" href="../assets/css/demo.css" />
-  
+
 
   <!-- Vendors CSS -->
   <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -95,7 +95,7 @@
                 </g>
               </svg>
             </span>
-            <span class="app-brand-text demo menu-text fw-bolder ms-2">User</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">User </span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -113,7 +113,7 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
-            
+
             <li class="menu-item">
               <a href="/user/issues" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-error"></i>
@@ -126,7 +126,7 @@
                 <div data-i18n="Analytics">Organization</div>
               </a>
             </li>
-            
+
             <li class="menu-item">
               <a href="#" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
@@ -145,7 +145,7 @@
       <div class="layout-page">
         <!-- Navbar -->
 
-  
+
         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" style="margin:15px;">
               <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                 <i class="bx bx-menu bx-sm"></i>
@@ -192,9 +192,9 @@
                           id="uploadedAvatar"
                         />
                         <div class="button-wrapper">
-                          
-                          <span class="d-none d-sm-block">Name: XYZ</span>
-                          <span class="d-none d-sm-block">Email: email@gmail.com</span>
+
+                          <span class="d-none d-sm-block">Name: {{\Illuminate\Support\Facades\Auth::user()->name}}</span>
+                          <span class="d-none d-sm-block">Email: {{\Illuminate\Support\Facades\Auth::user()->email}}</span>
 
                         </div>
                       </div>
@@ -216,7 +216,7 @@
                       organization
                     </button>
                   </li>
-                  
+
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
@@ -286,7 +286,7 @@
                           id="uploadedAvatar"
                         />
                         <div class="button-wrapper">
-                          
+
                           <span class="d-none d-sm-block">Name: XYZ</span>
                           <span class="d-none d-sm-block">Email: email@gmail.com</span>
 
@@ -295,7 +295,7 @@
                     </div>
                   </div>
                   </div>
-                  
+
                 </div>
               </div>
 

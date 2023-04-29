@@ -42,7 +42,7 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-    
+
     <link rel="stylesheet" href="../assets/vendor/css/pages/page-auth.css" />
      </head>
 
@@ -57,20 +57,21 @@
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                
+
               </div>
               <!-- /Logo -->
               <h4 class="mb-2">Welcome back! 👋</h4>
               <p class="mb-4">Please sign-in to your account </p>
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <form id="formAuthentication" class="mb-3" action="{{route('login')}}" method="POST">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                 <div class="mb-3">
                   <label for="email" class="form-label">Email or Username</label>
                   <input
                     type="text"
                     class="form-control"
                     id="email"
-                    name="email-username"
+                    name="email"
                     placeholder="Enter your email or username"
                     autofocus
                   />
@@ -78,7 +79,7 @@
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Password</label>
-                    
+
                   </div>
                   <div class="input-group input-group-merge">
                     <input
@@ -92,6 +93,15 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
+                  <div class="mb-3">
+                      <label for="exampleFormControlSelect1" class="form-label">select Role</label>
+                      <select class="form-select" id="exampleFormControlSelect1" aria-label="Select Role" name="role">
+                          <option selected>Select Role</option>
+                          <option value=1>Organization</option>
+                          <option value=0>User</option>
+
+                      </select>
+                  </div>
                 <div class="mb-3">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="remember-me" />
@@ -118,7 +128,7 @@
     <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <script src="../assets/vendor/js/menu.js"></script>
-    
+
     <script src="../assets/js/main.js"></script>
 
        <script async defer src="https://buttons.github.io/buttons.js"></script>
