@@ -20,7 +20,7 @@ use App\Http\Controllers\LoginController;
 //});
 
 
-Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');
+//Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');
 
 Route::get('user/{id}', 'App\Http\Controllers\UserController@getUser')->name('user.get');
 Route::post('user', 'App\Http\Controllers\UserController@updateUser')->name('login.update');

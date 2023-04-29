@@ -56,3 +56,5 @@ Route::get('/user/issues', function () {
 Route::get('/user/organization', function () {
     return view('user/organization');
 });
+
+Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');
