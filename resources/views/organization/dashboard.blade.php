@@ -1,3 +1,6 @@
+@if(!\Illuminate\Support\Facades\Auth::guard('organization')->check())
+    <script>window.location = "/login";</script>
+@else
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
   data-template="vertical-menu-template-free">
 
@@ -40,6 +43,17 @@
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="../assets/js/config.js"></script>
+  @php
+  $organization_id = \Illuminate\Support\Facades\Auth::id;
+  $organization_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organization/' . $organization_id);  
+  $organization = $organization_response["data"];
+
+  $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationIssues/' . $organization_id);
+  $issues = $issue_response["data"];
+  print_r($issues)  
+
+
+  @endphp
 </head>
 
 <body>
@@ -138,9 +152,9 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-                <div data-i18n="Analytics">Log Out</div>
+                <div data-i18n="Analytics">Logout</div>
               </a>
             </li>
 
@@ -231,37 +245,48 @@
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <h5 class="card-title">Issue 1</h5>
-                      <div class="card-subtitle text-muted mb-3">Issue</div>
+
+                    {{-- @php
+
+                      foreach ($issues as $issue) {
+
+                    @endphp
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <h5 class="card-title">{{$issue["title"]}}</h5>
+                        <div class="card-subtitle text-muted mb-3">{{$issue["organization"]["name"]}}</div>
+                        <p class="card-text">
+                          {{$issue["desc_comment"]["content"]}}
+                        </p>
+                        <a href="javascript:void(0)" class="card-link">Issue link</a>
+                      </div>
+                    </div>
+                    @php
+
+                      }
+
+                    @endphp --}}
+                    {{-- <div class="card mb-4">
+                      <div class="card-body">
+                      <h5 class="card-title">Issue 2</h5>
+                        <div class="card-subtitle text-muted mb-3">Issue</div>
                       <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">Issue link</a>
+                          Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
+                        <a href="javascript:void(0)" class="card-link">Issue link</a>
+                      </div>
                     </div>
-                  </div>
-                  <div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Issue 2</h5>
-                      <div class="card-subtitle text-muted mb-3">Issue</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">Issue link</a>
+                    <div class="card mb-4">
+                      <div class="card-body">
+                      <h5 class="card-title">Issue 3</h5>
+                        <div class="card-subtitle text-muted mb-3">Issue</div>
+                      <p class="card-text">
+                          Some quick example text to build on the card title and make up the bulk of the card's content.
+                        </p>
+                        <a href="javascript:void(0)" class="card-link">Issue link</a>
+                      </div>
                     </div>
-                  </div>
-                  <div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Issue 3</h5>
-                      <div class="card-subtitle text-muted mb-3">Issue</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">Issue link</a>
-                    </div>
-                  </div>
-                  </div>
+                  </div> --}}
                   <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
                   <div class="card mb-4">
                     <div class="card-body">
@@ -368,3 +393,5 @@
 </body>
 
 </html>
+
+@endif

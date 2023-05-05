@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5a48ab099885e970621e9d614c2e5c8",
+    "content-hash": "608e153a9b960760ab8ea10fb7410409",
     "packages": [
         {
             "name": "brick/math",
@@ -3250,31 +3250,32 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "10.0.7",
+            "version": "10.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "0ea3ae43fe885dc8a5e7b06054d57f4699641cbb"
+                "reference": "3bd7093d1c71807e85d1afd1bc7b506243210837"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/0ea3ae43fe885dc8a5e7b06054d57f4699641cbb",
-                "reference": "0ea3ae43fe885dc8a5e7b06054d57f4699641cbb",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/3bd7093d1c71807e85d1afd1bc7b506243210837",
+                "reference": "3bd7093d1c71807e85d1afd1bc7b506243210837",
                 "shasum": ""
             },
             "require": {
                 "ext-exif": "*",
                 "ext-fileinfo": "*",
                 "ext-json": "*",
-                "illuminate/bus": "^9.0",
-                "illuminate/console": "^9.0",
-                "illuminate/database": "^9.0",
-                "illuminate/pipeline": "^9.0",
-                "illuminate/support": "^9.0",
+                "illuminate/bus": "^9.18|^10.0",
+                "illuminate/conditionable": "^9.18|^10.0",
+                "illuminate/console": "^9.18|^10.0",
+                "illuminate/database": "^9.18|^10.0",
+                "illuminate/pipeline": "^9.18|^10.0",
+                "illuminate/support": "^9.18|^10.0",
                 "intervention/image": "^2.7",
-                "maennchen/zipstream-php": "^2.0",
+                "maennchen/zipstream-php": "^2.0|^3.0",
                 "php": "^8.0",
-                "spatie/image": "^2.2",
+                "spatie/image": "^2.2.2",
                 "spatie/temporary-directory": "^2.0",
                 "symfony/console": "^6.0"
             },
@@ -3291,8 +3292,8 @@
                 "league/flysystem-aws-s3-v3": "^3.0",
                 "mockery/mockery": "^1.4",
                 "nunomaduro/larastan": "^2.0",
-                "orchestra/testbench": "7.*",
-                "pestphp/pest": "^1.20",
+                "orchestra/testbench": "^7.0|^8.0",
+                "pestphp/pest": "^1.21",
                 "phpstan/extension-installer": "^1.1",
                 "spatie/laravel-ray": "^1.28",
                 "spatie/pdf-to-image": "^2.1",
@@ -3342,7 +3343,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.0.7"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.9.2"
             },
             "funding": [
                 {
@@ -3354,7 +3355,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-02-16T11:14:59+00:00"
+            "time": "2023-05-03T08:49:22+00:00"
         },
         {
             "name": "spatie/temporary-directory",
