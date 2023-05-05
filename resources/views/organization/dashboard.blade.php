@@ -48,15 +48,17 @@
   $organization_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organization/' . $organization_id);  
   $organization = $organization_response["data"];
 
-  $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationIssues/' . $organization_id);
+  $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationIssues/1');
   $issues = $issue_response["data"];
-  print_r($issues)  
 
+  $employee_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationEmployee/1');
+  $employees = $employee_response["data"];
 
   @endphp
 </head>
 
 <body>
+  
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
@@ -160,7 +162,6 @@
 
             <!-- Layouts -->
 
-
           </ul>
       </aside>
       <!-- / Menu -->
@@ -168,36 +169,15 @@
       <!-- Layout container -->
       <div class="layout-page">
         <!-- Navbar -->
-
-  
+     
         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none" style="margin:15px;">
-              <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-                <i class="bx bx-menu bx-sm"></i>
-              </a>
-            </div>
-
-
-
-
-
-
-
-
+          <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="bx bx-menu bx-sm"></i>
+          </a>
+        </div>
 
         <div class="content-wrapper">
           <div class="container-xxl flex-grow-1 container-p-y">
-
-
-
-
-
-
-
-
-
-
-
-
 
             <div class="col-xl-12">
               <h6 class="text-muted">Basic</h6>
@@ -217,10 +197,9 @@
                         />
                         <div class="button-wrapper">
                           
-                          <span class="d-none d-sm-block">Name: XYZ</span>
-                          <span class="d-none d-sm-block">Email: email@gmail.com</span>
-                          <p class="text-muted mb-0">Here comes, description of organization</p>
-
+                          <span class="d-none d-sm-block">Name: {{$organization["name"]}}</span>
+                          <span class="d-none d-sm-block">Email: {{$organization["email"]}}</span>
+                          <p class="text-muted mb-0">{{$organization["description"]}}</p>
 
                         </div>
                       </div>
@@ -246,7 +225,7 @@
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
 
-                    {{-- @php
+                    @php
 
                       foreach ($issues as $issue) {
 
@@ -254,7 +233,7 @@
                     <div class="card mb-4">
                       <div class="card-body">
                         <h5 class="card-title">{{$issue["title"]}}</h5>
-                        <div class="card-subtitle text-muted mb-3">{{$issue["organization"]["name"]}}</div>
+                        <div class="card-subtitle text-muted mb-3">{{$issue["assignee"]["name"]}}</div>
                         <p class="card-text">
                           {{$issue["desc_comment"]["content"]}}
                         </p>
@@ -265,110 +244,40 @@
 
                       }
 
-                    @endphp --}}
-                    {{-- <div class="card mb-4">
-                      <div class="card-body">
-                      <h5 class="card-title">Issue 2</h5>
-                        <div class="card-subtitle text-muted mb-3">Issue</div>
-                      <p class="card-text">
-                          Some quick example text to build on the card title and make up the bulk of the card's content.
-                        </p>
-                        <a href="javascript:void(0)" class="card-link">Issue link</a>
-                      </div>
-                    </div>
+                    @endphp
+                  </div>
+
+                  <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
+                    @php
+
+                      foreach ($employees as $employee) {
+
+                    @endphp
+                    
                     <div class="card mb-4">
                       <div class="card-body">
-                      <h5 class="card-title">Issue 3</h5>
-                        <div class="card-subtitle text-muted mb-3">Issue</div>
-                      <p class="card-text">
-                          Some quick example text to build on the card title and make up the bulk of the card's content.
-                        </p>
-                        <a href="javascript:void(0)" class="card-link">Issue link</a>
+                        <h5 class="card-title">{{$employee["name"]}}</h5>
+                        <div class="card-subtitle text-muted mb-3">{{$employee["email"]}}</div>
+                        <a href="javascript:void(0)" class="card-link">View profile</a>
                       </div>
+                      </div>
+                      
+                    @php
+
+                      }
+
+                    @endphp
+                      
                     </div>
-                  </div> --}}
-                  <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <h5 class="card-title">Employee 1</h5>
-                      <div class="card-subtitle text-muted mb-3">Employee</div>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">View profile</a>
-                    </div>
-                  </div>
-                  <div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Employee 2</h5>
-                      <div class="card-subtitle text-muted mb-3">Employee</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">View profile</a>
-                    </div>
-                  </div>
-                  <div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Employee 3</h5>
-                      <div class="card-subtitle text-muted mb-3">Employee</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">View profile</a>
-                    </div>
-                  </div>
-                  </div>
                   
                 </div>
               </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
-
 
           </div>
 
-
-
-
           <footer class="content-footer footer bg-footer-theme">
-
           </footer>
 
           <div class="content-backdrop fade"></div>
