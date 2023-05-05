@@ -44,7 +44,7 @@
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="../assets/js/config.js"></script>
   @php
-  $organization_id = \Illuminate\Support\Facades\Auth::id;
+  $organization_id = \Illuminate\Support\Facades\Auth::guard("organization")->user()->id;
   $organization_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organization/' . $organization_id);  
   $organization = $organization_response["data"];
 
