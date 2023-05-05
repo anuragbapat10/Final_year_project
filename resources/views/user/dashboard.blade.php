@@ -53,8 +53,8 @@
 
   $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
   $issues = $issue_response["data"];
-  print_r($issues)  
 
+  $orgs = $user["organizations"];
 
   @endphp
   <!-- Layout wrapper -->
@@ -165,32 +165,9 @@
                 <i class="bx bx-menu bx-sm"></i>
               </a>
             </div>
-
-
-
-
-
-
-
-
-
         <div class="content-wrapper">
           <div class="container-xxl flex-grow-1 container-p-y">
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div class="col-xl-12">
-              <h6 class="text-muted">Basic</h6>
+            <div class="col-xl-12"> 
               <div class="col-md">
                <div class="card mb-4">
                     <h5 class="card-header">Profile Details</h5>
@@ -206,7 +183,6 @@
                           id="uploadedAvatar"
                         />
                         <div class="button-wrapper">
-
                           <span class="d-none d-sm-block">Name: {{$user["name"]}}</span>
                           <span class="d-none d-sm-block">Email: {{$user["email"]}}</span>
 
@@ -227,20 +203,21 @@
                     <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                       data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile"
                       aria-selected="false">
-                      organization
+                      Organization
                     </button>
                   </li>
 
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+                    @if (count($issues)<1)
+                      <p class="card-text">
+                        No Issues created by user yet.
+                      </p>
+                    @else
                     @php
-
                       foreach ($issues as $issue) {
-                        # code...
-
                     @endphp
-                    
                     <div class="card mb-4">
                       <div class="card-body">
                         <h5 class="card-title">{{$issue["title"]}}</h5>
@@ -251,74 +228,37 @@
                         <a href="javascript:void(0)" class="card-link">Issue link</a>
                       </div>
                     </div>
-
                     @php
                       }
                     @endphp
+                    @endif
                   </div>
                   <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <h5 class="card-title">Organization 1</h5>
-                      <div class="card-subtitle text-muted mb-3">Organization</div>
+                    @if (count($orgs)<1)
                       <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                        User not part of any Organization yet.
                       </p>
-                      <a href="javascript:void(0)" class="card-link">View profile</a>
+                    @else
+                    @php
+                      foreach ($orgs as $org) {
+                    @endphp
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <h5 class="card-title">{{$org["name"]}}</h5>
+                        <div class="card-subtitle text-muted mb-3">{{$org["email"]}}</div>
+                        <p class="card-text">
+                          {{$org["description"]}}
+                        </p>
+                        <a href="javascript:void(0)" class="card-link">Organization link</a>
+                      </div>
                     </div>
+                    @php
+                      }
+                    @endphp
+                    @endif
                   </div>
-                  <div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Organization 2</h5>
-                      <div class="card-subtitle text-muted mb-3">Organization</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">View profile</a>
-                    </div>
-                  </div>
-
-                  </div>
-
                 </div>
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
 
 
