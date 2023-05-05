@@ -48,10 +48,10 @@
   $organization_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organization/' . $organization_id);  
   $organization = $organization_response["data"];
 
-  $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationIssues/1');
+  $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationIssues/' . $organization_id);
   $issues = $issue_response["data"];
 
-  $employee_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationEmployee/1');
+  $employee_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationEmployee/' . $organization_id);
   $employees = $employee_response["data"];
 
   @endphp
@@ -224,7 +224,11 @@
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
-
+                    @if (count($issues)<1)
+                      <p class="card-text">
+                        No Issues created by Organization yet.
+                      </p>
+                    @else
                     @php
 
                       foreach ($issues as $issue) {
@@ -245,9 +249,15 @@
                       }
 
                     @endphp
+                    @endif
                   </div>
 
                   <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
+                    @if (count($employees)<1)
+                      <p class="card-text">
+                        No employees in Organization yet.
+                      </p>
+                    @else
                     @php
 
                       foreach ($employees as $employee) {
@@ -267,6 +277,7 @@
                       }
 
                     @endphp
+                    @endif
                       
                     </div>
                   
