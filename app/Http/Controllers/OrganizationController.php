@@ -64,6 +64,6 @@ class OrganizationController extends Controller
     }
 
     public function getOrganizationIssues($id) {
-        return IssuesSummaryResource::collection(Organization::find($id)->issues);
+        return IssueResource::collection(Organization::find($id)->issues);
     }
 }
