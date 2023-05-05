@@ -6,6 +6,7 @@ use App\Models\Issue;
 use App\Http\Requests\IssueRequest;
 use App\Http\Resources\IssueResource;
 use App\Http\Resources\IssuesSummaryResource;
+use App\Models\User;
 
 class IssueController extends Controller
 {

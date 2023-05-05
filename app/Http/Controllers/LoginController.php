@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -56,8 +57,17 @@ class LoginController extends Controller
             // Authentication passed...
             return redirect('organization/dashboard');
         }}
-        return redirect('user/organization');
+        return redirect('login');
 
         //return UserResource::make($user);
+    }
+
+    public function logout(Request $request)
+    {
+        Session::flush();
+
+        Auth::logout();
+
+        return redirect('login');
     }
 }

@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function issues()
     {
-        return $this->hasMany(Issue::class,'author_id')->withTimestamps();
+        return $this->hasMany(Issue::class,'author_id');
     }
 
     public function organizations()

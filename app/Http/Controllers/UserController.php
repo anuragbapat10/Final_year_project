@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\IssuesSummaryResource;
 use App\Models\User;
 use App\Models\Organization;
 use App\Http\Resources\UserResource;
@@ -42,7 +43,7 @@ class UserController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if ($request->organization_add != NULL) {    
+        if ($request->organization_add != NULL) {
             if ($request->organization_add == 1) {
                 $user->organizations()->attach($request->organization_id);
             } elseif ($request->organization_add == 0) {
@@ -58,5 +59,9 @@ class UserController extends Controller
         $deletedUser->delete();
 
         return UserResource::make($deletedUser);
+    }
+
+    public function getUserIssues($id) {
+        return IssuesSummaryResource::collection(User::find($id)->issues);
     }
 }

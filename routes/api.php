@@ -25,6 +25,7 @@ use App\Http\Controllers\LoginController;
 Route::get('user/{id}', 'App\Http\Controllers\UserController@getUser')->name('user.get');
 Route::post('user', 'App\Http\Controllers\UserController@updateUser')->name('login.update');
 Route::delete('user/{id}', 'App\Http\Controllers\UserController@deleteUser')->name('user.delete');
+Route::get('userIssues/{id}', 'App\Http\Controllers\UserController@getUserIssues')->name('userIssues.get');
 
 Route::get('issue/{id}', 'App\Http\Controllers\IssueController@getIssue')->name('issue.get');
 Route::post('issue/', 'App\Http\Controllers\IssueController@updateIssue')->name('issue.update');

@@ -1,4 +1,7 @@
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
+@if(!\Illuminate\Support\Facades\Auth::check())
+    <script>window.location = "/login";</script>
+@else
+    <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
   data-template="vertical-menu-template-free">
 
 <head>
@@ -128,7 +131,7 @@
             </li>
 
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
                 <div data-i18n="Analytics">Log Out</div>
               </a>
@@ -220,6 +223,22 @@
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+
+                      <script>
+                          $.ajax({
+                              type: "GET",
+                              dataType: "json",
+                              url: "http://localhost:8000/api/user/1",
+                              success: function (data) {
+                                  print(data);
+                              },
+                              error: function (error) {
+
+                                  jsonValue = jQuery.parseJSON(error.responseText);
+                                  alert("error" + error.responseText);
+                              }
+                          });
+                      </script>
                   <div class="card mb-4">
                     <div class="card-body">
                       <h5 class="card-title">Issue 1</h5>
@@ -230,26 +249,7 @@
                       <a href="javascript:void(0)" class="card-link">Issue link</a>
                     </div>
                   </div>
-                  <div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Issue 2</h5>
-                      <div class="card-subtitle text-muted mb-3">Issue</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">Issue link</a>
-                    </div>
-                  </div>
-                  <div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Issue 3</h5>
-                      <div class="card-subtitle text-muted mb-3">Issue</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">Issue link</a>
-                    </div>
-                  </div>
+
                   </div>
                   <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
                   <div class="card mb-4">
@@ -272,28 +272,7 @@
                       <a href="javascript:void(0)" class="card-link">View profile</a>
                     </div>
                   </div>
-                  <div class="card mb-4">
-                    <h5 class="card-header">Profile Details</h5>
-                    <!-- Account -->
-                    <div class="card-body">
-                      <div class="d-flex align-items-start align-items-sm-center gap-4">
-                        <img
-                          src="../assets/img/avatars/1.png"
-                          alt="user-avatar"
-                          class="d-block rounded"
-                          height="100"
-                          width="100"
-                          id="uploadedAvatar"
-                        />
-                        <div class="button-wrapper">
 
-                          <span class="d-none d-sm-block">Name: XYZ</span>
-                          <span class="d-none d-sm-block">Email: email@gmail.com</span>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   </div>
 
                 </div>
@@ -369,3 +348,4 @@
 </body>
 
 </html>
+@endif
