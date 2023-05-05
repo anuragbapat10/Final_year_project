@@ -46,6 +46,17 @@
 </head>
 
 <body>
+  @php
+  $user_id = \Illuminate\Support\Facades\Auth::user()->id;
+  $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);  
+  $user = $user_response["data"];
+
+  $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
+  $issues = $issue_response["data"];
+  print_r($issues)  
+
+
+  @endphp
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
@@ -196,8 +207,8 @@
                         />
                         <div class="button-wrapper">
 
-                          <span class="d-none d-sm-block">Name: {{\Illuminate\Support\Facades\Auth::user()->name}}</span>
-                          <span class="d-none d-sm-block">Email: {{\Illuminate\Support\Facades\Auth::user()->email}}</span>
+                          <span class="d-none d-sm-block">Name: {{$user["name"]}}</span>
+                          <span class="d-none d-sm-block">Email: {{$user["email"]}}</span>
 
                         </div>
                       </div>
@@ -223,33 +234,27 @@
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+                    @php
 
-                      <script>
-                          $.ajax({
-                              type: "GET",
-                              dataType: "json",
-                              url: "http://localhost:8000/api/user/1",
-                              success: function (data) {
-                                  print(data);
-                              },
-                              error: function (error) {
+                      foreach ($issues as $issue) {
+                        # code...
 
-                                  jsonValue = jQuery.parseJSON(error.responseText);
-                                  alert("error" + error.responseText);
-                              }
-                          });
-                      </script>
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <h5 class="card-title">Issue 1</h5>
-                      <div class="card-subtitle text-muted mb-3">Issue</div>
-                      <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">Issue link</a>
+                    @endphp
+                    
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <h5 class="card-title">{{$issue["title"]}}</h5>
+                        <div class="card-subtitle text-muted mb-3">{{$issue["organization"]["name"]}}</div>
+                        <p class="card-text">
+                          {{$issue["desc_comment"]["content"]}}
+                        </p>
+                        <a href="javascript:void(0)" class="card-link">Issue link</a>
+                      </div>
                     </div>
-                  </div>
 
+                    @php
+                      }
+                    @endphp
                   </div>
                   <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
                   <div class="card mb-4">

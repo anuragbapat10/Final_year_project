@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\IssuesSummaryResource;
 use App\Models\User;
 use App\Models\Organization;
 use App\Http\Resources\UserResource;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\IssueResource;
 use SebastianBergmann\Type\FalseType;
+use App\Http\Requests\UpdateUserRequest;
+use App\Http\Resources\IssuesSummaryResource;
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
             if ($request->password !== null) {
                 User::find($request->id)->update(
                     ['email' => $request->email,
-                    'hashed_password' => hash('sha256', $request->password),
+                    'hashed_password' => password_hash($request->password, PASSWORD_BCRYPT),
                     'name' => $request->name],
                 );
             }
@@ -36,7 +37,7 @@ class UserController extends Controller
         } else {
             User::create(
                 ['email' => $request->email,
-                'hashed_password' => hash('sha256', $request->password),
+                'hashed_password' => password_hash($request->password, PASSWORD_BCRYPT),
                 'name' => $request->name],
             );
         }
@@ -62,6 +63,6 @@ class UserController extends Controller
     }
 
     public function getUserIssues($id) {
-        return IssuesSummaryResource::collection(User::find($id)->issues);
+        return IssueResource::collection(User::find($id)->issues);
     }
 }
