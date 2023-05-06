@@ -1,3 +1,6 @@
+@if(!\Illuminate\Support\Facades\Auth::check())
+    <script>window.location = "/login";</script>
+@else
 <!DOCTYPE html>
 
 
@@ -43,6 +46,13 @@
 </head>
 
 <body>
+    @php
+    $user_id = \Illuminate\Support\Facades\Auth::user()->id;
+
+    $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
+    $issues = $issue_response["data"];
+
+    @endphp
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
@@ -118,7 +128,7 @@
             </li>
             
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
                 <div data-i18n="Analytics">Log Out</div>
               </a>
@@ -167,43 +177,67 @@
 
                   <div class="card-body">
                     <div class="row gx-3 gy-2 align-items-center">
-                      <div class="col-md-3">
-                        <label class="form-label" for="selectTypeOpt">Organization</label>
-                        <select id="selectTypeOpt" class="form-select color-dropdown">
-                          <option value="bg-primary" selected="">O1</option>
-                          <option value="bg-secondary">O2</option>
-                          <option value="bg-success">O3</option>
-                          <option value="bg-danger">O4</option>
-                          <option value="bg-warning">O5</option>
-                          <option value="bg-info">O6</option>
-                          <option value="bg-dark">O7</option>
-                        </select>
+                      <div class ="col-md-3">
+                        <label for="exampleDataList" class="form-label">Title</label>
+                        <input
+                          class="form-control"
+                          list="datalistOptions"
+                          id="exampleDataList"
+                          placeholder="Type to search..."
+                        />
+                        <datalist id="datalistOptions">
+                          @foreach ($issues as $issue)
+                            <option value='{{$issue["title"]}}'></option>
+                          @endforeach
+                        </datalist>
                       </div>
-                      <div class="col-md-3">
-                        <label class="form-label" for="selectPlacement">Issue tag</label>
-                        <select class="form-select placement-dropdown" id="selectPlacement">
-                          <option value="bg-primary" selected="">P1</option>
-                          <option value="bg-secondary">P2</option>
-                          <option value="bg-success">P3</option>
-                          <option value="bg-danger">P4</option>
-                          <option value="bg-warning">P5</option>
-                          <option value="bg-info">P6</option>
-                          <option value="bg-dark">P7</option>
-                        </select>
+                      <div class ="col-md-3">
+                        <label for="exampleDataList" class="form-label">Tag</label>
+                        <input
+                          class="form-control"
+                          list="datalistOptions1"
+                          id="exampleDataList"
+                          placeholder="Type to search..."
+                        />
+                        <datalist id="datalistOptions1">
+                          @php
+                          $tag_dropdown = array();
+                          foreach ($issues as $issue) {
+                            foreach ($issue["tags"] as $tag) {
+                              if (!array_key_exists($tag["name"], $tag_dropdown)){
+                                array_push($tag_dropdown, $tag["name"]);
+                              }
+                            }
+                          }
+                          @endphp
+                          @foreach ($tag_dropdown as $tagdd)
+                            echo "<option value='{{$tagdd}}'></option>";
+                          @endforeach
+                        </datalist>
+                      </div>
+                      <div class ="col-md-3">
+                        <label for="exampleDataList" class="form-label">Organization</label>
+                        <input
+                          class="form-control"
+                          list="datalistOptions3"
+                          id="exampleDataList"
+                          placeholder="Type to search..."
+                        />
+                        <datalist id="datalistOptions3">
+                          @php
+                          $organization_dropdown = array();
+                          foreach ($issues as $issue) {
+                            if (!array_key_exists($issue["organization"]["name"], $organization_dropdown)){
+                              array_push($organization_dropdown, $issue["organization"]["name"]);
+                            }
+                          }
+                          @endphp
+                          @foreach ($organization_dropdown as $orgdd)
+                            <option value='{{$orgdd}}'></option>
+                          @endforeach
+                        </datalist>
                       </div>
                       
-                      <div class="col-md-3">
-                        <label class="form-label" for="selectPlacement">Issue Name</label>
-                        <select class="form-select placement-dropdown" id="selectPlacement">
-                          <option value="bg-primary" selected="">P1</option>
-                          <option value="bg-secondary">P2</option>
-                          <option value="bg-success">P3</option>
-                          <option value="bg-danger">P4</option>
-                          <option value="bg-warning">P5</option>
-                          <option value="bg-info">P6</option>
-                          <option value="bg-dark">P7</option>
-                        </select>
-                      </div>
                       <div class="col-md-3">
                         <label class="form-label" for="showToastPlacement">&nbsp;</label>
                         <button id="showToastPlacement" class="btn btn-primary d-block">Search</button>
@@ -273,12 +307,24 @@
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
+                      @if (count($issues)<1)
                       <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>ID1</strong></td>
-                        <td>Issue 1</td>
+                        No Issues created by user yet.
+                      </tr>
+                      @else
+                      @php
+                        foreach ($issues as $issue) {
+                      @endphp
+                      <tr>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$issue["id"]}}</strong></td>
+                        <td>{{$issue["title"]}}</td>
 
-                        <td><span class="badge bg-label-primary me-1">Active</span></td>
-                        <td>Organization</td>
+                        <td>
+                          @foreach ($issue["tags"] as $tag)
+                            <span class="badge bg-label-primary me-1">{{$tag["name"]}}</span>
+                          @endforeach
+                        </td>
+                        <td>{{$issue["organization"]["name"]}}</td>
 
                         <td>
                           <div class="dropdown">
@@ -292,88 +338,14 @@
                           </div>
                         </td>
                       </tr>
-                      <tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>ID2</strong></td>
-                        <td>Issue 1</td>
-
-                        <td><span class="badge bg-label-success me-1">Completed</span></td>
-                        <td>Organization</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show me-1"></i> View</a>
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr><tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>ID3</strong></td>
-                        <td>Issue 1</td>
-
-                        <td><span class="badge bg-label-info me-1">Scheduled</span></td>
-                        <td>Organization</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show me-1"></i> View</a>
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr><tr>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>ID4</strong></td>
-                        <td>Issue 1</td>
-
-                        <td><span class="badge bg-label-warning me-1">Pending</span></td>
-                        <td>Organization</td>
-
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="profile.html"><i class="bx bx-show me-1"></i> View</a>
-                              <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
+                      @php
+                        }
+                      @endphp
+                      @endif
                     </tbody>
                   </table>
                 </div>
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             </div>
             <!-- / Content -->
@@ -441,3 +413,4 @@
 </body>
 
 </html>
+@endif

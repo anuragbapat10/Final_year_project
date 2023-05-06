@@ -1,3 +1,6 @@
+@if(!\Illuminate\Support\Facades\Auth::check())
+    <script>window.location = "/login";</script>
+@else
 <!DOCTYPE html>
 
 
@@ -47,6 +50,13 @@
 </head>
 
 <body>
+    @php
+    $user_id = \Illuminate\Support\Facades\Auth::user()->id;
+    $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);  
+    $user = $user_response["data"];
+    $orgs = $user["organizations"];
+
+    @endphp
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -133,7 +143,7 @@
             </li>
             
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
                 <div data-i18n="Analytics">Log Out</div>
               </a>
@@ -166,54 +176,24 @@
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
                           
-                          <h5 class="card-header">Table &nbsp;&nbsp;&nbsp;&nbsp; 
-                            
-                          </h5>
-
-
-
-
-
+                          <h5 class="card-header">Table &nbsp;&nbsp;&nbsp;&nbsp;</h5>
                           <div class="card mb-4">
                             
                             <div class="card-body">
                             <div class="row gx-3 gy-2 align-items-center">
-                      <div class="col-md-3">
-                        <label class="form-label" for="selectTypeOpt">Organization</label>
-                        <select id="selectTypeOpt" class="form-select color-dropdown">
-                          <option value="bg-primary" selected="">O1</option>
-                          <option value="bg-secondary">O2</option>
-                          <option value="bg-success">O3</option>
-                          <option value="bg-danger">O4</option>
-                          <option value="bg-warning">O5</option>
-                          <option value="bg-info">O6</option>
-                          <option value="bg-dark">O7</option>
-                        </select>
-                      </div>
-                      <div class="col-md-3">
-                        <label class="form-label" for="selectPlacement">Issue tag</label>
-                        <select class="form-select placement-dropdown" id="selectPlacement">
-                          <option value="bg-primary" selected="">P1</option>
-                          <option value="bg-secondary">P2</option>
-                          <option value="bg-success">P3</option>
-                          <option value="bg-danger">P4</option>
-                          <option value="bg-warning">P5</option>
-                          <option value="bg-info">P6</option>
-                          <option value="bg-dark">P7</option>
-                        </select>
-                      </div>
-                      
-                      <div class="col-md-3">
-                        <label class="form-label" for="selectPlacement">Issue Name</label>
-                        <select class="form-select placement-dropdown" id="selectPlacement">
-                          <option value="bg-primary" selected="">P1</option>
-                          <option value="bg-secondary">P2</option>
-                          <option value="bg-success">P3</option>
-                          <option value="bg-danger">P4</option>
-                          <option value="bg-warning">P5</option>
-                          <option value="bg-info">P6</option>
-                          <option value="bg-dark">P7</option>
-                        </select>
+                      <div class ="col-md-3">
+                        <label for="exampleDataList" class="form-label">Organization Name</label>
+                        <input
+                          class="form-control"
+                          list="datalistOptions"
+                          id="exampleDataList"
+                          placeholder="Type to search..."
+                        />
+                        <datalist id="datalistOptions">
+                          @foreach ($orgs as $org)
+                            <option value='{{$org["name"]}}'></option>
+                          @endforeach
+                        </datalist>
                       </div>
                       <div class="col-md-3">
                         <label class="form-label" for="showToastPlacement">&nbsp;</label>
@@ -230,60 +210,29 @@
                               
                             </div>
                           </div>
-                          <div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Organization 1</h5>
-                      <div class="card-subtitle text-muted mb-3">Organization</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">View profile</a>
-                    </div>
-                  </div>
+                  @if (count($orgs)<1)
+                    <p class="card-text">
+                      User not part of any Organization yet.
+                    </p>
+                  @else
+                  @php
+                    foreach ($orgs as $org) {
+                  @endphp
                   <div class="card mb-4">
                     <div class="card-body">
-                    <h5 class="card-title">Organization 2</h5>
-                      <div class="card-subtitle text-muted mb-3">Organization</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                      <h5 class="card-title">{{$org["name"]}}</h5>
+                      <div class="card-subtitle text-muted mb-3">{{$org["email"]}}</div>
+                      <p class="card-text">
+                        {{$org["description"]}}
                       </p>
-                      <a href="javascript:void(0)" class="card-link">View profile</a>
-                    </div>
-                  </div><div class="card mb-4">
-                    <div class="card-body">
-                    <h5 class="card-title">Organization 3</h5>
-                      <div class="card-subtitle text-muted mb-3">Organization</div>
-                     <p class="card-text">
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <a href="javascript:void(0)" class="card-link">View profile</a>
+                      <a href="javascript:void(0)" class="card-link">Organization link</a>
                     </div>
                   </div>
+                  @php
+                    }
+                  @endphp
+                  @endif
                         </div>
-
-                    
-                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
                         </div>
                         <!-- / Content -->
 
@@ -327,3 +276,4 @@
 </body>
 
 </html>
+@endif
