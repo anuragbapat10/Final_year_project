@@ -1,3 +1,6 @@
+@if(!\Illuminate\Support\Facades\Auth::guard('organization')->check())
+    <script>window.location = "/login";</script>
+@else
 <!DOCTYPE html>
 
 
@@ -128,9 +131,9 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-                <div data-i18n="Analytics">Log Out</div>
+                <div data-i18n="Analytics">Logout</div>
               </a>
             </li>
 
@@ -223,3 +226,4 @@
 </body>
 
 </html>
+@endif

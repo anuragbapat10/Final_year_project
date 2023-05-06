@@ -1,3 +1,6 @@
+@if(!\Illuminate\Support\Facades\Auth::guard('organization')->check())
+    <script>window.location = "/login";</script>
+@else
 <!DOCTYPE html>
 
 
@@ -143,9 +146,9 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-                <div data-i18n="Analytics">Log Out</div>
+                <div data-i18n="Analytics">Logout</div>
               </a>
             </li>
 
@@ -155,7 +158,7 @@
           </ul>
               </aside>
               <!-- / Menu -->
-        
+
               <!-- Layout container -->
               <div class="layout-page">
                 <!-- Navbar -->
@@ -170,11 +173,11 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                  
+
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
                                 <h4 class="fw-bold py-3 mb-4">Edit Profile</h4>
-                  
+
                             <div class="card mb-4">
 
                             <div class="card-body">
@@ -195,7 +198,7 @@
                                       />
                                     </div>
                                   </div>
-                                  
+
                                   <div class="mb-3">
                                     <label class="form-label" for="basic-icon-default-email">Email</label>
                                     <div class="input-group input-group-merge">
@@ -211,7 +214,7 @@
                                       <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
                                     </div>
                                   </div>
-                                  
+
                                   <div class="mb-3">
                                     <label class="form-label" for="basic-icon-default-message">Description</label>
                                     <div class="input-group input-group-merge speech-to-text">
@@ -225,13 +228,13 @@
                                 </form>
                               </div>
                               </div>
-      
 
 
 
 
 
-                    
+
+
                         </div>
                         <!-- / Content -->
 
@@ -275,3 +278,4 @@
 </body>
 
 </html>
+@endif

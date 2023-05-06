@@ -1,3 +1,6 @@
+@if(!\Illuminate\Support\Facades\Auth::guard('organization')->check())
+    <script>window.location = "/login";</script>
+@else
 <!DOCTYPE html>
 
 
@@ -161,9 +164,9 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
-                <div data-i18n="Analytics">Log Out</div>
+                <div data-i18n="Analytics">Logout</div>
               </a>
             </li>
 
@@ -173,7 +176,7 @@
           </ul>
         </aside>
         <!-- / Menu -->
-  
+
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
@@ -225,7 +228,7 @@
 
                 <div class="row">
                   <div class="col-md-12">
-                    
+
                     <div class="row">
                       <div class="col-md-6 col-12 mb-md-0 mb-4">
                         <div class="card">
@@ -233,7 +236,7 @@
                           <div class="card-body">
                             <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
-                            
+
                             <!-- /Connections -->
                           </div>
                         </div>
@@ -249,13 +252,13 @@
                     </div>
                   </div>
                 </div>
-                
+
             </div>
             <!-- / Content -->
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
-              
+
             </footer>
             <!-- / Footer -->
 
@@ -271,7 +274,7 @@
     </div>
     <!-- / Layout wrapper -->
 
-    
+
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
@@ -286,7 +289,7 @@
         "#e8c3b9",
         "#1e7145"
       ];
-      
+
       new Chart("myChart", {
         type: "pie",
         data: {
@@ -314,7 +317,7 @@
           "#e8c3b9",
           "#1e7145"
         ];
-        
+
         new Chart("myChart2", {
           type: "doughnut",
           data: {
@@ -332,8 +335,8 @@
           }
         });
         </script>
-        
-      
+
+
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/popper/popper.js"></script>
     <script src="../assets/vendor/js/bootstrap.js"></script>
@@ -355,3 +358,4 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
+@endif
