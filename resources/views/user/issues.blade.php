@@ -43,6 +43,7 @@
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="../assets/js/config.js"></script>
+    <style>.filterable{margin-top:15px}.filterable .panel-heading .pull-right{margin-top:-20px}.filterable .filters input[disabled]{background-color:transparent;border:none;cursor:auto;box-shadow:none;padding:0;height:auto}.filterable .filters input[disabled]::-webkit-input-placeholder{color:#333}.filterable .filters input[disabled]::-moz-placeholder{color:#333}.filterable .filters input[disabled]:-ms-input-placeholder{color:#333}</style>
 </head>
 
 <body>
@@ -113,7 +114,7 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
-            
+
             <li class="menu-item">
               <a href="/user/issues" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-error"></i>
@@ -126,7 +127,7 @@
                 <div data-i18n="Analytics">Organization</div>
               </a>
             </li>
-            
+
             <li class="menu-item">
               <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
@@ -173,82 +174,45 @@
 
 
 
-                <div class="card mb-4">
+
 
                   <div class="card-body">
                     <div class="row gx-3 gy-2 align-items-center">
-                      <div class ="col-md-3">
-                        <label for="exampleDataList" class="form-label">Title</label>
-                        <input
-                          class="form-control"
-                          list="datalistOptions"
-                          id="exampleDataList"
-                          placeholder="Type to search..."
-                        />
-                        <datalist id="datalistOptions">
-                          @foreach ($issues as $issue)
-                            <option value='{{$issue["title"]}}'></option>
-                          @endforeach
-                        </datalist>
-                      </div>
-                      <div class ="col-md-3">
-                        <label for="exampleDataList" class="form-label">Tag</label>
-                        <input
-                          class="form-control"
-                          list="datalistOptions1"
-                          id="exampleDataList"
-                          placeholder="Type to search..."
-                        />
-                        <datalist id="datalistOptions1">
-                          @php
-                          $tag_dropdown = array();
-                          foreach ($issues as $issue) {
-                            foreach ($issue["tags"] as $tag) {
-                              if (!array_key_exists($tag["name"], $tag_dropdown)){
-                                array_push($tag_dropdown, $tag["name"]);
-                              }
-                            }
-                          }
-                          @endphp
-                          @foreach ($tag_dropdown as $tagdd)
-                            echo "<option value='{{$tagdd}}'></option>";
-                          @endforeach
-                        </datalist>
-                      </div>
-                      <div class ="col-md-3">
-                        <label for="exampleDataList" class="form-label">Organization</label>
-                        <input
-                          class="form-control"
-                          list="datalistOptions3"
-                          id="exampleDataList"
-                          placeholder="Type to search..."
-                        />
-                        <datalist id="datalistOptions3">
-                          @php
-                          $organization_dropdown = array();
-                          foreach ($issues as $issue) {
-                            if (!array_key_exists($issue["organization"]["name"], $organization_dropdown)){
-                              array_push($organization_dropdown, $issue["organization"]["name"]);
-                            }
-                          }
-                          @endphp
-                          @foreach ($organization_dropdown as $orgdd)
-                            <option value='{{$orgdd}}'></option>
-                          @endforeach
-                        </datalist>
-                      </div>
-                      
-                      <div class="col-md-3">
-                        <label class="form-label" for="showToastPlacement">&nbsp;</label>
-                        <button id="showToastPlacement" class="btn btn-primary d-block">Search</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <div class="col-lg-4 col-md-6">
                   <div class="mt-3">
 
+                      <script>
+                          function getCookie(name) {
+                              let cookieValue = null;
+                              if (document.cookie && document.cookie !== '') {
+                                  const cookies = document.cookie.split(';');
+                                  for (let i = 0; i < cookies.length; i++) {
+                                      const cookie = cookies[i].trim();
+                                      // Does this cookie string begin with the name we want?
+                                      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                          break;
+                                      }
+                                  }
+                              }
+                              return cookieValue;
+                          }
+                          const csrftoken = getCookie('csrftoken');
 
+                          fetch('http://127.0.0.1:8002/api/', {
+                              method: 'POST',
+                              headers: {
+                                  'Accept': 'application/json',
+                                  'Content-Type': 'application/json',
+                                  'X-CSRFToken': csrftoken,
+                              },
+                              body: JSON.stringify({'issue':'Textual content'}),
+                          })
+                              .then(response => response.json())
+                              .then(response => console.log(JSON.stringify(response)))
+
+                      </script>
 
                     <!-- Modal -->
                     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
@@ -296,7 +260,79 @@
                   </div>
                 </div>
                 <div class="table-responsive text-nowrap">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                    <div class="panel panel-primary filterable">
                   <table class="table">
+                      <thead>
+                      <tr class="filters">
+                          <th><label for="exampleDataList" class="form-label">ID</label>
+                              <input type="text" placeholder="ID" id="dobWithTitle" class="form-control" list="datalistOptions0">
+                              <datalist id="datalistOptions0">
+                                  @php
+                                      $id_dropdown = array();
+                                      foreach ($issues as $issue) {
+                                        if (!in_array($issue["id"], $id_dropdown)){
+                                          array_push($id_dropdown, $issue["id"]);
+                                        }
+                                      }
+                                  @endphp
+                                  @foreach ($id_dropdown as $iddd)
+                                      <option value='{{$iddd}}'></option>
+                                  @endforeach
+                              </datalist>
+                          </th>
+                          <th><label for="exampleDataList" class="form-label">Title</label>
+                              <input type="text" placeholder="Title" id="dobWithTitle" class="form-control" list="datalistOptions1">
+                              <datalist id="datalistOptions1">
+                              @php
+                                  $title_dropdown = array();
+                                  foreach ($issues as $issue) {
+                                    if (!in_array($issue["title"], $title_dropdown)){
+                                      array_push($title_dropdown, $issue["title"]);
+                                    }
+                                  }
+                              @endphp
+                              @foreach ($title_dropdown as $titledd)
+                                  <option value='{{$titledd}}'></option>
+                                  @endforeach
+                                  </datalist>
+                          </th>
+                          <th><label for="exampleDataList" class="form-label">Tags</label>
+                              <input type="text" placeholder="Tags" id="dobWithTitle" class="form-control" list="datalistOptions2">
+                              <datalist id="datalistOptions2">
+                                  @php
+                                      $tag_dropdown = array();
+                                      foreach ($issues as $issue) {
+                                        foreach ($issue["tags"] as $tag) {
+                                          if (!in_array($tag["name"], $tag_dropdown)){
+                                            array_push($tag_dropdown, $tag["name"]);
+                                          }
+                                        }
+                                      }
+                                  @endphp
+                                  @foreach ($tag_dropdown as $tagdd)
+                                      echo "<option value='{{$tagdd}}'></option>";
+                                  @endforeach
+                              </datalist>
+                          </th>
+                          <th><label for="exampleDataList" class="form-label">Organization</label>
+                              <input type="text" placeholder="Organization" id="dobWithTitle" class="form-control" list="datalistOptions3">
+                              <datalist id="datalistOptions3">
+                                  @php
+                                      $organization_dropdown = array();
+                                      foreach ($issues as $issue) {
+                                        if (!in_array($issue["organization"]["name"], $organization_dropdown)){
+                                          array_push($organization_dropdown, $issue["organization"]["name"]);
+                                        }
+                                      }
+                                  @endphp
+                                  @foreach ($organization_dropdown as $orgdd)
+                                      <option value='{{$orgdd}}'></option>
+                                  @endforeach
+                              </datalist>
+                          </th>
+                      </tr>
+                      </thead>
                     <thead>
                       <tr>
                         <th>ID</th>
@@ -344,6 +380,7 @@
                       @endif
                     </tbody>
                   </table>
+                    </div>
                 </div>
               </div>
 
@@ -410,6 +447,7 @@
 
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+<script>function checkval(){1==$("tbody tr:visible").length&&"No result found"==$("tbody tr:visible td").html()?$("#rowcount").html("0"):$("#rowcount").html($("tr:visible").length-1)}$(document).ready(function(){$("#rowcount").html($(".filterable tr").length-1),$(".filterable .btn-filter").click(function(){var t=$(this).parents(".filterable"),e=t.find(".filters input"),l=t.find(".table tbody");1==e.prop("disabled")?(e.prop("disabled",!1),e.first().focus()):(e.val("").prop("disabled",!0),l.find(".no-result").remove(),l.find("tr").show()),$("#rowcount").html($(".filterable tr").length-1)}),$(".filterable .filters input").keyup(function(t){if("9"!=(t.keyCode||t.which)){var e=$(this),l=e.val().toLowerCase(),n=e.parents(".filterable"),i=n.find(".filters th").index(e.parents("th")),r=n.find(".table"),o=r.find("tbody tr"),d=o.filter(function(){return-1===$(this).find("td").eq(i).text().toLowerCase().indexOf(l)});r.find("tbody .no-result").remove(),o.show(),d.hide(),d.length===o.length&&r.find("tbody").prepend($('<tr class="no-result text-center"><td colspan="'+r.find(".filters th").length+'">No result found</td></tr>'))}$("#rowcount").html($("tr:visible").length-1),checkval()})});</script>
 </body>
 
 </html>
