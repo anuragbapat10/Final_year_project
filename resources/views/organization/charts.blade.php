@@ -157,12 +157,12 @@
                 <div data-i18n="Analytics">Employees</div>
               </a>
             </li>
-            <li class="menu-item">
+            <!-- <li class="menu-item">
               <a href="/organization/editorgprofile" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
                 <div data-i18n="Analytics">Edit Profile</div>
               </a>
-            </li>
+            </li> -->
             <li class="menu-item">
               <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
@@ -195,44 +195,17 @@
 
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
-                <div class="col-lg-8 mb-4 order-0">
-                  <div class="card">
-                    <div class="d-flex align-items-end row">
-                      <div class="col-sm-7">
-                        <div class="card-body">
-                          <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
-                          <p class="mb-4">
-                            You have done <span class="fw-bold">72%</span> more sales today. Check your new badge in
-                            your profile.
-                          </p>
-
-                          <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-                        </div>
-                      </div>
-                      <div class="col-sm-5 text-center text-sm-left">
-                        <div class="card-body pb-0 px-0 px-md-4">
-                          <img
-                            src="../assets/img/illustrations/man-with-laptop-light.png"
-                            height="140"
-                            alt="View Badge User"
-                            data-app-dark-img="illustrations/man-with-laptop-dark.png"
-                            data-app-light-img="illustrations/man-with-laptop-light.png"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
 
 
 
-                <div class="row">
+                <div class="row" style='margin-bottom:24px;'>
                   <div class="col-md-12">
 
                     <div class="row">
                       <div class="col-md-6 col-12 mb-md-0 mb-4">
                         <div class="card">
-                          <h5 class="card-header">Connected Accounts</h5>
+                          <h5 class="card-header">Tags Distrbution in Issues</h5>
                           <div class="card-body">
                             <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
@@ -243,7 +216,7 @@
                       </div>
                       <div class="col-md-6 col-12">
                         <div class="card">
-                          <h5 class="card-header">Social Accounts</h5>
+                          <h5 class="card-header">Issue Status</h5>
                           <div class="card-body">
                             <canvas id="myChart2" style="width:100%;max-width:600px"></canvas>
 
@@ -253,7 +226,26 @@
                   </div>
                 </div>
 
-            </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+
+                    <div class="row">
+                      <div class="col-md-6 col-12 mb-md-0 mb-4">
+                        <div class="card">
+                          <h5 class="card-header">Issues Workload Distribution</h5>
+                          <div class="card-body">
+                            <canvas id="myChart3" style="width:100%;max-width:600px"></canvas>
+
+
+                            <!-- /Connections -->
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+
+                </div>
             <!-- / Content -->
 
             <!-- Footer -->
@@ -280,8 +272,20 @@
     <!-- build:js assets/vendor/js/core.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script>
-      var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-      var yValues = [55, 49, 44, 24, 15];
+      var xValues = [
+        @php
+        foreach ($tagname as $name) {
+          echo "'" . $name . "',";
+        }
+        @endphp
+      ];
+      var yValues = [
+        @php
+        foreach ($tagid as $id) {
+          echo $id . ",";
+        }
+        @endphp
+      ];
       var barColors = [
         "#b91d47",
         "#00aba9",
@@ -302,14 +306,26 @@
         options: {
           title: {
             display: true,
-            text: "World Wide Wine Production 2018"
+            text: "Tags Distribution"
           }
         }
       });
       </script>
       <script>
-        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-        var yValues = [55, 49, 44, 24, 15];
+        var xValues = [
+          @php
+          foreach ($statusname as $name) {
+            echo "'" . $name . "',";
+          }
+          @endphp
+        ];
+        var yValues = [
+          @php
+          foreach ($statusid as $id) {
+            echo $id . ",";
+          }
+          @endphp
+        ];
         var barColors = [
           "#b91d47",
           "#00aba9",
@@ -330,7 +346,47 @@
           options: {
             title: {
               display: true,
-              text: "World Wide Wine Production 2018"
+              text: "Status Distribution"
+            }
+          }
+        });
+        </script>
+      <script>
+        var xValues = [
+          @php
+          foreach ($authorname as $name) {
+            echo "'" . $name . "',";
+          }
+          @endphp
+        ];
+        var yValues = [
+          @php
+          foreach ($authorid as $id) {
+            echo $id . ",";
+          }
+          @endphp
+        ];
+        var barColors = [
+          "#b91d47",
+          "#00aba9",
+          "#2b5797",
+          "#e8c3b9",
+          "#1e7145"
+        ];
+
+        new Chart("myChart3", {
+          type: "pie",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: "User Distribution"
             }
           }
         });

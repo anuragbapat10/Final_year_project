@@ -146,12 +146,12 @@
                         <div data-i18n="Analytics">Employees</div>
                     </a>
                 </li>
-                <li class="menu-item">
+                <!-- <li class="menu-item">
                     <a href="/organization/editorgprofile" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-edit-alt me-2"></i>
                         <div data-i18n="Analytics">Edit Profile</div>
                     </a>
-                </li>
+                </li> -->
                 <li class="menu-item">
                     <a href="{{route('logout')}}" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
