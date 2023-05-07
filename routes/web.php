@@ -30,7 +30,53 @@ Route::get('/organization/dashboard', function () {
 });
 
 Route::get('/organization/charts', function () {
-    return view('organization/charts');
+    $organization_id = \Illuminate\Support\Facades\Auth::guard("organization")->user()->id;
+
+    $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organizationIssues/' . $organization_id);
+    $issues = $issue_response["data"];
+
+    $tagid = array();
+    $tagname = array();
+
+    $statusid = array();
+    $statusname = array();
+    
+    $authorid = array();
+    $authorname = array();
+    foreach ($issues as $issue) {
+        foreach ($issue['tags'] as $tag) {
+            if (array_key_exists($tag['id'], $tagid)){
+                $tagid[$tag['id']] = $tagid[$tag['id']] + 1;
+            }
+            else {
+                $tagid[$tag['id']] = 1;
+                array_push($tagname, $tag['name']);
+            }
+        }
+        if (array_key_exists($issue['status']['id'], $statusid)){
+            $statusid[$issue['status']['id']] = $statusid[$issue['status']['id']] + 1;
+        }
+        else {
+            $statusid[$issue['status']['id']] = 1;
+            array_push($statusname, $issue['status']['name']);
+        }
+
+        if (array_key_exists($issue['author']['id'], $authorid)){
+            $authorid[$issue['author']['id']] = $authorid[$issue['author']['id']] + 1;
+        }
+        else {
+            $authorid[$issue['author']['id']] = 1;
+            array_push($authorname, $issue['author']['name']);
+        }
+    }
+
+    return view('organization/charts', ['tagid' => $tagid,
+                                        'tagname' => $tagname,
+                                        'statusid' => $statusid,
+                                        'statusname' => $statusname,
+                                        'authorid' => $authorid,
+                                        'authorname' => $authorname,
+                                        ]);
 });
 
 Route::get('/organization/issues', function () {
