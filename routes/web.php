@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Organization;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,10 +52,54 @@ Route::get('/user/dashboard', function () {
     return view('user/dashboard');
 });
 Route::get('/user/issues', function () {
-    return view('user/issues');
+    return view('user/issues', ['status' => '']);
+});
+Route::post('/user/issues', function () {
+    return view('user/issues', ['status' => 'hi from routes']);
 });
 Route::get('/user/organization', function () {
-    return view('user/organization');
+    $user_id = \Illuminate\Support\Facades\Auth::user()->id;
+    $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);  
+    $user = $user_response["data"];
+
+    $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
+    $issues = $issue_response["data"];
+    
+    $orgs = $user["organizations"];
+    return view('user/organization', ['user' => $user, 
+                                        'issues' => $issues,
+                                        'orgs' => $orgs,
+                                        'status' => '']);
+});
+Route::post('/user/organization', function () {
+    $user_id = \Illuminate\Support\Facades\Auth::user()->id;
+    $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);  
+    $user = $user_response["data"];
+
+    $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
+    $issues = $issue_response["data"];
+    
+    $orgs = $user["organizations"];
+    if(isset($_POST['searchorg'])){
+        $org_name = $_POST['organization_name'];
+        $organizations = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/organization/' . explode(' ', $org_name)[0])->collect();
+        if(count($organizations)>0){
+            $stat = 'Organization returned';
+            return view('user/organization', ['status' => $stat,
+                                                'user' => $user, 
+                                                'issues' => $issues,
+                                                'orgs' => $orgs,
+                                                'neworgs' => $organizations['data']]);
+        }
+        else {
+            $stat = 'Organization does not exists';
+            return view('user/organization', ['status' => $stat,
+                                                'user' => $user, 
+                                                'issues' => $issues,
+                                                'orgs' => $orgs,
+                                                'neworgs' => null]);
+        }
+    }
 });
 
 Route::post('login', 'App\Http\Controllers\LoginController@login')->name('login');

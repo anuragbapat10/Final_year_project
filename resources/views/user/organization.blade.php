@@ -50,13 +50,6 @@
 </head>
 
 <body>
-    @php
-    $user_id = \Illuminate\Support\Facades\Auth::user()->id;
-    $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);  
-    $user = $user_response["data"];
-    $orgs = $user["organizations"];
-
-    @endphp
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -176,10 +169,16 @@
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
                           
-                          <h5 class="card-header">Table &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                          <h5 class="card-header">Table &nbsp;&nbsp;&nbsp;&nbsp;
+                            <div style="color:green;display:inline;">
+                            {{$status}}
+                            </div>
+                          </h5>
                           <div class="card mb-4">
                             
                             <div class="card-body">
+                            <form method="POST">
+                            @csrf
                             <div class="row gx-3 gy-2 align-items-center">
                       <div class ="col-md-3">
                         <label for="exampleDataList" class="form-label">Organization Name</label>
@@ -188,18 +187,21 @@
                           list="datalistOptions"
                           id="exampleDataList"
                           placeholder="Type to search..."
+                          name="organization_name"
                         />
                         <datalist id="datalistOptions">
                           @foreach ($orgs as $org)
-                            <option value='{{$org["name"]}}'></option>
+                            <option value='{{$org["id"]}} - {{$org["name"]}}'></option>
                           @endforeach
                         </datalist>
                       </div>
                       <div class="col-md-3">
                         <label class="form-label" for="showToastPlacement">&nbsp;</label>
-                        <button id="showToastPlacement" class="btn btn-primary d-block">Search</button>
+                        <button type="submit" id="showToastPlacement" 
+                          name="searchorg" class="btn btn-primary d-block">Search</button>
                       </div>
                     </div>
+                    </form>
                   </div>
                         </div>
                            <div class="col-lg-4 col-md-6">
@@ -210,27 +212,50 @@
                               
                             </div>
                           </div>
-                  @if (count($orgs)<1)
-                    <p class="card-text">
-                      User not part of any Organization yet.
-                    </p>
-                  @else
-                  @php
-                    foreach ($orgs as $org) {
-                  @endphp
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <h5 class="card-title">{{$org["name"]}}</h5>
-                      <div class="card-subtitle text-muted mb-3">{{$org["email"]}}</div>
+                  @if (!isset($_POST['searchorg']))
+                    @if (count($orgs)<1)
                       <p class="card-text">
-                        {{$org["description"]}}
+                        User not part of any Organization yet.
                       </p>
-                      <a href="javascript:void(0)" class="card-link">Organization link</a>
+                    @else
+                    @php
+                      foreach ($orgs as $org) {
+                    @endphp
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <h5 class="card-title">{{$org["name"]}}</h5>
+                        <div class="card-subtitle text-muted mb-3">{{$org["email"]}}</div>
+                        <p class="card-text">
+                          {{$org["description"]}}
+                        </p>
+                        <a href="javascript:void(0)" class="card-link">Organization link</a>
+                      </div>
                     </div>
-                  </div>
-                  @php
-                    }
-                  @endphp
+                    @php
+                      }
+                    @endphp
+                    @endif
+                  @else
+                    @if (is_null($neworgs))
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <p class="card-text">
+                          {{$status}}
+                        </p>
+                      </div>
+                    </div>
+                    @else
+                    <div class="card mb-4">
+                      <div class="card-body">
+                        <h5 class="card-title">{{$neworgs["name"]}}</h5>
+                        <div class="card-subtitle text-muted mb-3">{{$neworgs["email"]}}</div>
+                        <p class="card-text">
+                          {{$neworgs["description"]}}
+                        </p>
+                        <a href="javascript:void(0)" class="card-link">Organization link</a>
+                      </div>
+                    </div>
+                    @endif
                   @endif
                         </div>
                         </div>
