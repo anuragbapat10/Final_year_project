@@ -277,6 +277,7 @@
                             <table class="table">
                                 <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Action</th>
@@ -291,6 +292,7 @@
                                 <tr>
                                     <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{$employee["id"]}}</strong></td>
                                     <td>{{$employee["name"]}}</td>
+                                    <td>{{$employee["email"]}}</td>
 
                                     <td>
                                         <div class="dropdown">

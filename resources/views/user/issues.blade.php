@@ -113,7 +113,7 @@
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
             </li>
-            
+
             <li class="menu-item">
               <a href="/user/issues" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-error"></i>
@@ -126,7 +126,7 @@
                 <div data-i18n="Analytics">Organization</div>
               </a>
             </li>
-            
+
             <li class="menu-item">
               <a href="{{route('logout')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-power-off me-2"></i>
@@ -237,7 +237,7 @@
                           @endforeach
                         </datalist>
                       </div>
-                      
+
                       <div class="col-md-3">
                         <label class="form-label" for="showToastPlacement">&nbsp;</label>
                         <button id="showToastPlacement" class="btn btn-primary d-block">Search</button>
