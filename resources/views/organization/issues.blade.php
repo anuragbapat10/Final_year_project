@@ -276,6 +276,7 @@
                                                         <div class="mb-3">
                                                             <label class="form-label" for="basic-default-message">Description</label>
                                                             <textarea
+                                                                name="desc_comment"
                                                                 id="basic-default-message"
                                                                 class="form-control"
                                                                 placeholder="Add some info about your isssue"
