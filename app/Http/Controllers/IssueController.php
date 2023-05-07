@@ -65,4 +65,9 @@ class IssueController extends Controller
 
         return IssueResource::make($deletedIssue);
     }
+
+    public function getFilteredIssue(IssueRequest $request){
+
+        return IssueResource::collection();
+    }
 }
