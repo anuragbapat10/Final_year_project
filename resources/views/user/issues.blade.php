@@ -93,7 +93,7 @@
                 transform-origin: 50% 0;
                 transform: scale(1, 0);
                 transition: transform .15s ease-in-out .15s;
-                max-height: 66vh;
+                max-height: 33vh;
                 overflow-y: scroll;
             }
 
@@ -280,7 +280,7 @@
                             <!-- Basic Bootstrap Table -->
                             <div class="card">
 
-                                <h5 class="card-header">Table 
+                                <h5 class="card-header">Table
                                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#modalCenter"><span class="tf-icons bx bx-user-plus"></span>&nbsp;
                                         Add Issues
@@ -357,32 +357,12 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label"
-                                                                               for="basic-default-message">Description</label>
-                                                                        <textarea
-                                                                            id="basic-default-message"
-                                                                            class="form-control"
-                                                                            placeholder="Add some info about your isssue"
-                                                                            name="description"
-                                                                        ></textarea>
-                                                                        <div class="modal-footer">
-                                                                            <button onclick="get_tags()" type="button"
-                                                                                    class="btn btn-primary">Get tag
-                                                                                suggestions
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div id="tag-display-div" hidden>
-                                                                        <p>These are some suggestions for tags. you may copy and paste them in the next box.</p>
-                                                                        <p id="tag-display-para"></p>
-                                                                    </div>
                                                                     <div class="col mb-0">
                                                                         <label for="dobWithTitle" class="form-label">
                                                                             Tags</label>
-{{--                                                                        <input type="text" id="dobWithTitle"--}}
-{{--                                                                               class="form-control"--}}
-{{--                                                                               placeholder="add tags"/>--}}
+                                                                        {{--                                                                        <input type="text" id="dobWithTitle"--}}
+                                                                        {{--                                                                               class="form-control"--}}
+                                                                        {{--                                                                               placeholder="add tags"/>--}}
                                                                         <div class="dropdown form-select placement-dropdown" data-control="checkbox-dropdown">
                                                                             <label class="dropdown-label">Select</label>
                                                                             <div class="dropdown-list">
@@ -402,6 +382,26 @@
 
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label class="form-label"
+                                                                               for="basic-default-message">Description</label>
+                                                                        <textarea
+                                                                            id="basic-default-message"
+                                                                            class="form-control"
+                                                                            placeholder="Add some info about your isssue"
+                                                                            name="description"
+                                                                        ></textarea>
+                                                                        <div class="modal-footer">
+                                                                            <button onclick="get_tags()" type="button"
+                                                                                    class="btn btn-primary">Get tag
+                                                                                suggestions
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="tag-display-div" hidden>
+                                                                        <p>These are some suggestions for tags. you may copy and paste them in the next box.</p>
+                                                                        <p id="tag-display-para"></p>
                                                                     </div>
                                                                 </div>
                                                             </div>
