@@ -542,7 +542,7 @@
                                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                                     </button>
                                                                     <div class="dropdown-menu">
-                                                                        <a class="dropdown-item" href="profile.html"><i
+                                                                        <a class="dropdown-item" href="http://127.0.0.1:8000/user/issueinfo?id={{$issue["id"]}}"><i
                                                                                 class="bx bx-show me-1"></i> View</a>
                                                                         <a class="dropdown-item"
                                                                            href="javascript:void(0);"><i
