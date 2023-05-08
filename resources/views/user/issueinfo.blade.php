@@ -1,3 +1,6 @@
+@if(!\Illuminate\Support\Facades\Auth::check())
+    <script>window.location = "/login";</script>
+@else
 <!DOCTYPE html>
 
 
@@ -100,6 +103,20 @@
 </head>
 
 <body>
+    @php
+        $user_id = \Illuminate\Support\Facades\Auth::user()->id;
+        $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);
+        $user = $user_response["data"];
+
+        $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
+        $issues = $issue_response["data"];
+
+        $tags_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/allTags');
+        $tags = $tags_response["data"];
+
+        $orgs = $user["organizations"];
+
+    @endphp
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -142,7 +159,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Admin</span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2">User</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -396,3 +413,4 @@ showContainers.forEach((btn) =>
 </body>
 
 </html>
+@endif
