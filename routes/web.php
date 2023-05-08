@@ -44,7 +44,7 @@ Route::get('/organization/charts', function () {
 
     $statusid = array();
     $statusname = array();
-    
+
     $authorid = array();
     $authorname = array();
     foreach ($issues as $issue) {
@@ -105,30 +105,57 @@ Route::get('/user/issues', function () {
     return view('user/issues', ['status' => '']);
 });
 Route::post('/user/issues', function () {
-    return view('user/issues', ['status' => 'hi from routes']);
+    if(isset($_POST['addissue'])){
+        $title = $_POST['title'];
+        $org_id = $_POST['organization_id'];
+        $desc_comment = $_POST['description'];
+        $tag_list = $_POST['dropdown-group'];
+        $tag_array = array();
+
+        foreach ($tag_list as $tag){
+            array_push($tag_array, $tag);
+        }
+
+        $response = \Illuminate\Support\Facades\Http::post('http://localhost:8001/api/issue/', [
+            'author_id' => \Illuminate\Support\Facades\Auth::user()->id,
+            'title' => $title,
+            'desc_comment_id' => \Illuminate\Support\Facades\Http::post('http://localhost:8001/api/comment/', [
+                'user_id' => \Illuminate\Support\Facades\Auth::user()->id,
+                'contentt' => $desc_comment,
+                'upvote' => 0,
+                'downvote' => 0,
+            ])["data"]["id"],
+            'assignee_id' => 1,
+            'status_id' => 1,
+            'tags' => $tag_array,
+            'organization_id' => $org_id,
+        ]);
+
+    }
+    return view('user/issues', ['status' => $response]);
 });
 Route::get('/user/organization', function () {
     $user_id = \Illuminate\Support\Facades\Auth::user()->id;
-    $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);  
+    $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);
     $user = $user_response["data"];
 
     $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
     $issues = $issue_response["data"];
-    
+
     $orgs = $user["organizations"];
-    return view('user/organization', ['user' => $user, 
+    return view('user/organization', ['user' => $user,
                                         'issues' => $issues,
                                         'orgs' => $orgs,
                                         'status' => '']);
 });
 Route::post('/user/organization', function () {
     $user_id = \Illuminate\Support\Facades\Auth::user()->id;
-    $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);  
+    $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);
     $user = $user_response["data"];
 
     $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
     $issues = $issue_response["data"];
-    
+
     $orgs = $user["organizations"];
     if(isset($_POST['searchorg'])){
         $org_name = $_POST['organization_name'];
@@ -136,7 +163,7 @@ Route::post('/user/organization', function () {
         if(count($organizations)>0){
             $stat = 'Organization returned';
             return view('user/organization', ['status' => $stat,
-                                                'user' => $user, 
+                                                'user' => $user,
                                                 'issues' => $issues,
                                                 'orgs' => $orgs,
                                                 'neworgs' => $organizations['data']]);
@@ -144,7 +171,7 @@ Route::post('/user/organization', function () {
         else {
             $stat = 'Organization does not exists';
             return view('user/organization', ['status' => $stat,
-                                                'user' => $user, 
+                                                'user' => $user,
                                                 'issues' => $issues,
                                                 'orgs' => $orgs,
                                                 'neworgs' => null]);
