@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/user/issueinfo', function () {
+    return view('user/issueinfo', ['id' => $_GET['id']]);
+});
+
 Route::get('/login', function () {
     return view('login');
 });
