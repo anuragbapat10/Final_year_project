@@ -18,6 +18,11 @@ class TagController extends Controller
         return TagResource::make(Tag::find($id));
     }
 
+    public function getAllTags(){
+
+        return TagResource::collection(Tag::all());
+    }
+
     public function updateTag(TagRequest $request): TagResource {
 
         if ($request->id !== null) {

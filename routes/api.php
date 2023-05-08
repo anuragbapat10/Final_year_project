@@ -35,6 +35,7 @@ Route::get('allIssues', 'App\Http\Controllers\IssueController@getAllIssues')->na
 Route::get('tag/{id}', 'App\Http\Controllers\TagController@getTag')->name('tag.get');
 Route::post('tag/', 'App\Http\Controllers\TagController@updateTag')->name('tag.update');
 Route::delete('tag/{id}', 'App\Http\Controllers\TagController@deleteTag')->name('tag.delete');
+Route::get('allTags', 'App\Http\Controllers\TagController@getAllTags')->name('allTags.get');
 
 Route::get('comment/{id}', 'App\Http\Controllers\CommentController@getComment')->name('comment.get');
 Route::post('comment/', 'App\Http\Controllers\CommentController@updateComment')->name('comment.update');

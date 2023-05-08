@@ -74,15 +74,88 @@
 
             .filterable .filters input[disabled]:-ms-input-placeholder {
                 color: #333
-            }</style>
+            }
+        </style>
+        <style>
+
+            .dropdown {
+                position: relative;
+                font-size: 14px;
+                color: #333;
+
+            .dropdown-list {
+                padding: 12px;
+                background: #fff;
+                position: absolute;
+                top: 30px;
+                left: 2px;
+                right: 2px;
+                transform-origin: 50% 0;
+                transform: scale(1, 0);
+                transition: transform .15s ease-in-out .15s;
+                max-height: 66vh;
+                overflow-y: scroll;
+            }
+
+            .dropdown-option {
+                display: block;
+                padding: 8px 12px;
+                opacity: 0;
+                transition: opacity .15s ease-in-out;
+            }
+
+            .dropdown-label {
+                display: block;
+                height: 30px;
+                background: #fff;
+                padding: 6px 12px;
+                line-height: 1;
+                cursor: pointer;
+
+            &:before {
+                 content: '▼';
+                 float: right;
+             }
+            }
+
+            &.on {
+            .dropdown-list {
+                transform: scale(1, 1);
+                transition-delay: 0s;
+
+            .dropdown-option {
+                opacity: 1;
+                transition-delay: .2s;
+            }
+            }
+
+            .dropdown-label:before {
+                content: '▲';
+            }
+            }
+
+            [type="checkbox"] {
+                position: relative;
+                top: -1px;
+                margin-right: 4px;
+            }
+            }
+        </style>
     </head>
 
     <body>
     @php
         $user_id = \Illuminate\Support\Facades\Auth::user()->id;
+        $user_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/user/' . $user_id);
+        $user = $user_response["data"];
 
         $issue_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/userIssues/' . $user_id);
         $issues = $issue_response["data"];
+
+        $tags_response = \Illuminate\Support\Facades\Http::get('http://localhost:8001/api/allTags');
+        $tags = $tags_response["data"];
+
+        $orgs = $user["organizations"];
 
     @endphp
         <!-- Layout wrapper -->
@@ -207,7 +280,7 @@
                             <!-- Basic Bootstrap Table -->
                             <div class="card">
 
-                                <h5 class="card-header">Table &nbsp;&nbsp;&nbsp;&nbsp;
+                                <h5 class="card-header">Table 
                                     <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
                                             data-bs-target="#modalCenter"><span class="tf-icons bx bx-user-plus"></span>&nbsp;
                                         Add Issues
@@ -244,6 +317,8 @@
                                                 </script>
 
                                                 <!-- Modal -->
+                                                <form method="post">
+                                                    @csrf
                                                 <div class="modal fade" id="modalCenter" tabindex="-1"
                                                      aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -258,18 +333,29 @@
                                                             <div class="modal-body">
                                                                 <div class="row">
                                                                     <div class="col mb-3">
-                                                                        <label for="nameWithTitle" class="form-label">Name</label>
+                                                                        <label for="nameWithTitle" class="form-label">Title</label>
                                                                         <input type="text" id="nameWithTitle"
                                                                                class="form-control"
-                                                                               placeholder="Enter Name"/>
+                                                                               name="title"
+                                                                               placeholder="Enter Title"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row g-2">
                                                                     <div class="col mb-0">
                                                                         <label for="emailWithTitle" class="form-label">Organization</label>
-                                                                        <input type="text" id="emailWithTitle"
-                                                                               class="form-control"
-                                                                               placeholder="organization"/>
+{{--                                                                        <input type="text" id="emailWithTitle"--}}
+{{--                                                                               class="form-control"--}}
+{{--                                                                               placeholder="organization"/>--}}
+                                                                        <select
+                                                                            class="form-control"
+                                                                            list="datalistOptions4"
+                                                                            id="exampleDataList"
+                                                                            placeholder="Type to search..."
+                                                                            name="organization_id">
+                                                                            @foreach ($orgs as $org)
+                                                                                <option value='{{$org["id"]}}'>{{$org["name"]}}</option>
+                                                                            @endforeach
+                                                                        </select>
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label class="form-label"
@@ -278,6 +364,7 @@
                                                                             id="basic-default-message"
                                                                             class="form-control"
                                                                             placeholder="Add some info about your isssue"
+                                                                            name="description"
                                                                         ></textarea>
                                                                         <div class="modal-footer">
                                                                             <button onclick="get_tags()" type="button"
@@ -293,9 +380,28 @@
                                                                     <div class="col mb-0">
                                                                         <label for="dobWithTitle" class="form-label">
                                                                             Tags</label>
-                                                                        <input type="text" id="dobWithTitle"
-                                                                               class="form-control"
-                                                                               placeholder="add tags"/>
+{{--                                                                        <input type="text" id="dobWithTitle"--}}
+{{--                                                                               class="form-control"--}}
+{{--                                                                               placeholder="add tags"/>--}}
+                                                                        <div class="dropdown form-select placement-dropdown" data-control="checkbox-dropdown">
+                                                                            <label class="dropdown-label">Select</label>
+                                                                            <div class="dropdown-list">
+                                                                                <a href="#" data-toggle="check-all" class="dropdown-option">
+                                                                                    Check All
+                                                                                </a>
+                                                                                @php
+                                                                                    foreach ($tags as $tag) {
+                                                                                @endphp
+                                                                                <label class="dropdown-option">
+                                                                                    <input type="checkbox" name="dropdown-group[]" value="{{$tag["id"]}}" />
+                                                                                    {{$tag["name"]}}
+                                                                                </label>
+                                                                                @php
+                                                                                    }
+                                                                                @endphp
+
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -304,13 +410,14 @@
                                                                         data-bs-dismiss="modal">
                                                                     Close
                                                                 </button>
-                                                                <button type="button" class="btn btn-primary">Add
+                                                                <button type="submit" name="addissue" class="btn btn-primary">Add
                                                                     Issues
                                                                 </button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="table-responsive text-nowrap">
@@ -535,6 +642,100 @@
         });</script>
 
     <script>
+        (function($) {
+            var CheckboxDropdown = function(el) {
+                var _this = this;
+                this.isOpen = false;
+                this.areAllChecked = false;
+                this.$el = $(el);
+                this.$label = this.$el.find('.dropdown-label');
+                this.$checkAll = this.$el.find('[data-toggle="check-all"]').first();
+                this.$inputs = this.$el.find('[type="checkbox"]');
+
+                this.onCheckBox();
+
+                this.$label.on('click', function(e) {
+                    e.preventDefault();
+                    _this.toggleOpen();
+                });
+
+                this.$checkAll.on('click', function(e) {
+                    e.preventDefault();
+                    _this.onCheckAll();
+                });
+
+                this.$inputs.on('change', function(e) {
+                    _this.onCheckBox();
+                });
+            };
+
+            CheckboxDropdown.prototype.onCheckBox = function() {
+                this.updateStatus();
+            };
+
+            CheckboxDropdown.prototype.updateStatus = function() {
+                var checked = this.$el.find(':checked');
+
+                this.areAllChecked = false;
+                this.$checkAll.html('Check All');
+
+                if(checked.length <= 0) {
+                    this.$label.html('Select Options');
+                }
+                else if(checked.length === 1) {
+                    this.$label.html(checked.parent('label').text());
+                }
+                else if(checked.length === this.$inputs.length) {
+                    this.$label.html('All Selected');
+                    this.areAllChecked = true;
+                    this.$checkAll.html('Uncheck All');
+                }
+                else {
+                    this.$label.html(checked.length + ' Selected');
+                }
+            };
+
+            CheckboxDropdown.prototype.onCheckAll = function(checkAll) {
+                if(!this.areAllChecked || checkAll) {
+                    this.areAllChecked = true;
+                    this.$checkAll.html('Uncheck All');
+                    this.$inputs.prop('checked', true);
+                }
+                else {
+                    this.areAllChecked = false;
+                    this.$checkAll.html('Check All');
+                    this.$inputs.prop('checked', false);
+                }
+
+                this.updateStatus();
+            };
+
+            CheckboxDropdown.prototype.toggleOpen = function(forceOpen) {
+                var _this = this;
+
+                if(!this.isOpen || forceOpen) {
+                    this.isOpen = true;
+                    this.$el.addClass('on');
+                    $(document).on('click', function(e) {
+                        if(!$(e.target).closest('[data-control]').length) {
+                            _this.toggleOpen();
+                        }
+                    });
+                }
+                else {
+                    this.isOpen = false;
+                    this.$el.removeClass('on');
+                    $(document).off('click');
+                }
+            };
+
+            var checkboxesDropdowns = document.querySelectorAll('[data-control="checkbox-dropdown"]');
+            for(var i = 0, length = checkboxesDropdowns.length; i < length; i++) {
+                new CheckboxDropdown(checkboxesDropdowns[i]);
+            }
+        })(jQuery);
+    </script>
+    <script>
         function get_tags() {
             let title_txt = document.getElementById('nameWithTitle');
             let desc_txtarea = document.getElementById('basic-default-message')
@@ -566,6 +767,35 @@
 
         }
     </script>
+
+{{--    <script>--}}
+{{--        function post_issue() {--}}
+{{--            let title = document.getElementById('nameWithTitle').value--}}
+{{--            let organization = document.getElementById('emailWithTitle').value--}}
+{{--            let description = document.getElementById('basic-default-message').value--}}
+
+
+
+{{--            fetch('http://127.0.0.1:8002/api/issue/', {--}}
+{{--                method: 'POST',--}}
+{{--                headers: {--}}
+{{--                    'Accept': 'application/json',--}}
+{{--                    'Content-Type': 'application/json',--}}
+{{--                    'X-CSRFToken': csrftoken,--}}
+{{--                },--}}
+{{--                body: JSON.stringify({--}}
+{{--                    'title': title,--}}
+{{--                    'desc_comment': description,--}}
+{{--                    'organization_id': document.getElementById('organization_id').value,--}}
+{{--                    'tags': tags,--}}
+{{--                }),--}}
+{{--            })--}}
+{{--                .then(response => response.json())--}}
+{{--                .then(response => {--}}
+{{--                    console.log(JSON.stringify(response))--}}
+{{--                })--}}
+{{--        }--}}
+{{--    </script>--}}
     </body>
 
     </html>
