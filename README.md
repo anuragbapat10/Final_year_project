@@ -12,7 +12,7 @@ Issue tracking is the process of monitoring problems that users are experiencing
 **Laravel 9.36.4**
 
 ## Contribution guidelines 
-Follow these algorithms to contribute to the repository 
+Follow these steps to contribute to the repository 
 - Fork this repository 
 - Select your comfortable issues given in issues feature [click here to see the issues](https://github.com/Anurag-Shraddha-Nimish-Heramba/Final_year_project/issues).
 - Read the [Code of Conduct](https://github.com/Anurag-Shraddha-Nimish-Heramba/Final_year_project/blob/master/Code_of_Conduct.md) .
